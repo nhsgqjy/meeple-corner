@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Extract source package
-        run: unzip -o meeple-corner-github-source-v4.zip
+        run: unzip -n meeple-corner-github-source-v4.zip
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
