@@ -66,3 +66,36 @@
 
 /* Keep mobile navigation available while browsing both pages. */
 @media(max-width:760px){html{scroll-padding-top:90px}.topbar{position:sticky;top:0;z-index:15;background:var(--paper);box-shadow:0 5px 12px #8058220a}.topbar:before{content:"";position:absolute;inset:0 -16px;z-index:-1;background:var(--paper);border-bottom:1px solid var(--line);pointer-events:none}}
+
+/* One mobile navigation row, with the recommendation controls pinned below it. */
+.home-nav-icon{display:none}
+@media(max-width:760px){
+ .site-shell{--mobile-header-height:64px}
+ html{scroll-padding-top:215px}
+ .topbar{height:var(--mobile-header-height);min-height:var(--mobile-header-height);padding:0;flex-wrap:nowrap;gap:10px}
+ .topbar .brand{margin-right:0;flex:none}
+ .topbar .topnav{order:0;flex:none;flex-basis:auto;align-self:center;min-height:44px;margin:0 auto;gap:0;font-size:12px}
+ .topbar .topnav a{justify-content:center;padding:10px 2px;min-height:44px;white-space:nowrap}
+ .topbar .topnav a:first-child{width:32px}
+ .topbar .topnav a+a{margin-left:6px;padding-left:12px}
+ .topbar .topnav a+a:before{content:"";position:absolute;left:0;top:50%;height:17px;width:1px;background:#d9cdbb;transform:translateY(-50%)}
+ .topbar .topnav a.nav-active:after{bottom:3px;left:9px;width:calc(100% - 18px);height:2px}
+ .topbar .topnav a+a.nav-active:after{left:12px;width:calc(100% - 12px)}
+ .home-nav-icon{display:block;width:21px;height:21px}
+ .home-nav-label{display:none}
+ .topbar .profile-actions{margin-left:0;gap:7px;flex:none}
+ .topbar .profile-pill{gap:5px;font-size:10px}
+ .topbar .avatar{width:28px;height:28px}
+ .topbar .admin-link{font-size:9px;padding:7px 8px}
+ .page-home .catalog-section{padding-top:20px}
+ .page-home .catalog-heading{position:sticky;top:var(--mobile-header-height);z-index:14;padding:12px 0 14px;background:var(--paper);box-shadow:0 5px 12px #80582208;margin-bottom:16px}
+ .page-home .catalog-heading:before{content:"";position:absolute;inset:0 -20px;z-index:-1;background:var(--paper);border-bottom:1px solid #efe5d7;pointer-events:none}
+ .page-home .catalog-heading .overline{display:none}
+ .page-home .catalog-heading h2{font-size:22px;line-height:1.35}
+ .page-home .catalog-heading .section-subtitle{margin-top:5px;font-size:11px}
+ .page-home .catalog-heading .catalog-tools{margin:12px 0 0;gap:0}
+ .page-home .catalog-heading .scope-tabs{min-width:200px}
+ .page-home .catalog-heading .scope-tabs button{padding:9px 16px}
+ .page-home .global-notice{top:calc(var(--mobile-header-height) + 8px)}
+}
+@media(max-width:360px){.topbar{gap:6px}.topbar .brand{gap:4px}.topbar .brand-mark{width:21px;height:24px}.topbar .brand strong{font-size:12px}.topbar .profile-actions{gap:5px}.topbar .profile-pill>span:nth-child(2){max-width:30px}.topbar .topnav{font-size:11px}.topbar .topnav a+a{margin-left:3px;padding-left:9px}}
