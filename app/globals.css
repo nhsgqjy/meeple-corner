@@ -37,3 +37,6 @@
 .decision-title{display:inline-flex;align-items:baseline;gap:.14em;position:relative;isolation:isolate;transform:rotate(-2deg);letter-spacing:-.045em;font-weight:950!important;padding:2px 12px 9px 0}
 .decision-title span{color:var(--ink)}.decision-title em{font-style:normal;color:var(--clay);position:relative;white-space:nowrap}.decision-title em:after{content:"";position:absolute;left:0;right:3px;bottom:-5px;height:5px;border-radius:70%;background:#ffd468;transform:rotate(-2deg)}.decision-title i{font-style:normal;position:absolute;right:-7px;top:-7px;font-size:15px;color:#e7b848}.voting-section .decision-title+.section-subtitle{margin-top:9px}.voting-section .vote-rule{justify-content:flex-end;padding:10px 0 14px}.voting-section .ranking-list{margin-top:18px}
 @media(max-width:540px){.voting-section .section-heading .decision-title{font-size:25px}.decision-title i{font-size:12px;right:-5px;top:-6px}.voting-section .vote-rule{align-items:flex-end;padding:10px 0 0}.voting-section .ranking-list{margin-top:16px}}
+
+/* Real box photos: keep the entire cover visible on desktop and mobile. */
+.cover-art.has-cover{background:#f7f5f0}.cover-art.has-cover .cover-symbol{display:none}.cover-art.has-cover img{object-fit:contain;padding:12px}.small-cover.has-cover img{padding:3px}
