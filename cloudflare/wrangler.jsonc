@@ -1,0 +1,20 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "meeple-corner-api",
+  "account_id": "23bd24104153ff6a219db8150692bc22",
+  "main": "worker.ts",
+  "compatibility_date": "2026-05-15",
+  "workers_dev": true,
+  "preview_urls": false,
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "meeple-corner-interactions",
+      "database_id": "ef590932-e6e1-49b3-8643-5f810170fb5c",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    "PUBLIC_ORIGIN": "https://nhsgqjy.github.io,https://meeple-corner-qjy.hjzmwjhwdn.chatgpt.site"
+  }
+}
