@@ -1,22 +1,42 @@
-# 发布与数据维护
+# Cloudflare 互动后台
 
-## 两个入口
+## 当前结构
 
-正式入口：Sites 的 chatgpt.site；GitHub Pages 为静态发布副本。目录和图片在 public 内，前端不再依赖动态接口获得游戏资料。
+- GitHub Pages：`https://nhsgqjy.github.io/meeple-corner/`，网页、桌游目录和图片。
+- Worker：`https://meeple-corner-api.812097204.workers.dev`，互动接口。
+- D1：`meeple-corner-interactions`，位于用户自己的 Cloudflare 账号。
+- chatgpt.site 保留网页入口，所有 `/api/` 请求通过 `INTERACTION_API_BASE` 转接至新 Worker。
 
-GitHub Actions：检出完整源码 → npm ci → 校验目录及类型 → 构建 Pages → 发布。
-Sites：同步同一源码 → 构建 Worker → 打包 → 保存版本 → 部署。保留 .openai/hosting.json 的 project_id、DB、BUCKET 绑定，勿重新创建网站。
+## 发布
 
-更新静态资料后，Pages 会自动更新；chatgpt.site 仍需单独发布。新增/下架 ID 后发布后端，使互动校验、参与人数与目录一致。提交完成不等于两端均已上线。
+入口 `cloudflare/worker.ts` 复用 `app/api` 与 `lib`，不包含 Sites 托管运行时。配置文件为 `cloudflare/wrangler.jsonc`。
 
-## 低成本运行
+```sh
+node scripts/run-cloudflare.mjs login --scopes account:read user:read workers_scripts:write d1:write
+node scripts/run-cloudflare.mjs d1 migrations apply DB --remote --config cloudflare/wrangler.jsonc
+node scripts/run-cloudflare.mjs deploy --config cloudflare/wrangler.jsonc
+```
 
-互动每 60 秒刷新一次，切回窗口时刷新；SQL 在数据库内聚合，不再下载全部互动明细到前端。目录只需一次静态加载。
+本机授权保存在被忽略的 `.sites-runtime/cloudflare` 目录，不能提交或分享。`ADMIN_KEY` 已作为 Worker Secret 配置，沿用原口令。不能写进源码、Wrangler vars 或 GitHub 页面。当前通过本机授权发布，未向 GitHub 配置 Cloudflare 部署令牌。
 
-## 数据安全
+目录 ID 或后端逻辑修改后，需要重新发布 Worker；GitHub Pages 工作流只自动发布前端。目录和原始图片继续在 `public` 中维护，前端接口地址由 deploy-pages.yml 的 `VITE_API_BASE` 配置。
 
-本次迁移前已导出当时所有五张用户表到工作目录，备份不提交 GitHub。未删除旧数据库、图片或互动记录。D1 的 games 表仅为既有外键兼容；修改目录请只编辑 JSON，不编辑 D1。
+## 数据与备份
 
-下架游戏不会删除记录；恢复相同 ID 可重新显示原记录。后端发布需要同一份目录。新增 ID 第一次互动时会创建外键兼容行，无需执行建表迁移。
+切换时旧后台短暂只读，五张表逐项核对一致后接管流量。最终迁移数据：games 15 行、voting_rounds 2 行、votes 0 行、ratings 6 行、round_votes 4 行。旧库只是切换时副本，不再接收新写入。
 
-未来迁移 CloudBase 前需重新导出数据与资源，再确认导入和恢复；当前本地快照不是持续自动备份。
+迁移备份与最终快照保存在本机 `.sites-runtime/cloudflare`，未提交 GitHub。匿名浏览器身份和游戏 ID 保持原样；两个网页域名仍各自保存浏览器身份。
+
+手动导出当前数据库：
+
+```sh
+node scripts/run-cloudflare.mjs d1 export DB --remote --config cloudflare/wrangler.jsonc --output .sites-runtime/cloudflare/manual-backup.sql
+```
+
+导出后应另存至个人备份位置；尚未设置自动异地备份。平台恢复窗口以控制台当前套餐为准。
+
+回退时不能直接改回旧库，因为新互动已经写入新库。应先暂停写入、备份并同步最新数据，确认一致后切换。
+
+## Sites 兼容配置
+
+保留原 `.openai/hosting.json` 的项目 ID、DB 和 BUCKET。Sites 前端更新仍单独发布。`INTERACTION_READ_ONLY=1` 仅用于迁移暂停旧库写入，迁移后已移除；`INTERACTION_API_BASE` 现指向新 Worker。新 API 不需要 R2，图片从前端源码获取。
