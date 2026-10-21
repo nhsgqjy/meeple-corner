@@ -20,6 +20,13 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci --include=dev --include=optional
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate responsive covers
+        run: |
+          python -m pip install Pillow==11.3.0
+          python scripts/optimize-covers.py
       - run: npm run catalog:validate
       - run: node node_modules/typescript/bin/tsc --noEmit --incremental false
       - name: Build static frontend
