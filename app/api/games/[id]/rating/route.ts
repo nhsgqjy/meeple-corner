@@ -1,7 +1,7 @@
 import { ensureInteractionGame } from "@/lib/interaction-game";
 import { json } from "@/lib/http";
 export { OPTIONS } from "@/lib/http";
-import { and, eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { getDb } from "@/db";
 import { ratings } from "@/db/schema";
 import { isUserId } from "@/lib/boardgame";
@@ -19,7 +19,8 @@ export async function PUT(request: Request, context: RouteContext) {
       target: [ratings.gameId, ratings.userId],
       set: { score: Number(payload.score), updatedAt: new Date().toISOString() },
     });
-    return json(request, { ok: true });
+    const summary=await db.select({ratingCount:sql<number>`count(*)`,averageRating:sql<number>`avg(${ratings.score})`}).from(ratings).where(eq(ratings.gameId,id)).get();
+    return json(request, { ok: true, rating:{id,ratingCount:Number(summary?.ratingCount||0),averageRating:Number(summary?.averageRating||0),myRating:Number(payload.score)} });
   } catch {
     return json(request, { error: "评分没有保存成功，请稍后重试。" }, 500);
   }
