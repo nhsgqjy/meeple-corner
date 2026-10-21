@@ -32,7 +32,7 @@ jobs:
       - name: Build static frontend
         run: npm run build:pages
         env:
-          VITE_API_BASE: https://meeple-corner-qjy.hjzmwjhwdn.chatgpt.site
+          VITE_API_BASE: https://meeple-corner-api.812097204.workers.dev
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
