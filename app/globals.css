@@ -71,7 +71,7 @@
 .home-nav-icon{display:none}
 @media(max-width:760px){
  .site-shell{--mobile-header-height:64px}
- html{scroll-padding-top:215px}
+ html{scroll-padding-top:80px}
  .topbar{height:var(--mobile-header-height);min-height:var(--mobile-header-height);padding:0;flex-wrap:nowrap;gap:10px}
  .topbar .brand{margin-right:0;flex:none}
  .topbar .topnav{order:0;flex:none;flex-basis:auto;align-self:center;min-height:44px;margin:0 auto;gap:0;font-size:12px}
@@ -88,7 +88,7 @@
  .topbar .avatar{width:28px;height:28px}
  .topbar .admin-link{font-size:9px;padding:7px 8px}
  .page-home .catalog-section{padding-top:20px}
- .page-home .catalog-heading{position:sticky;top:var(--mobile-header-height);z-index:14;padding:12px 0 14px;background:var(--paper);box-shadow:0 5px 12px #80582208;margin-bottom:16px}
+ .page-home .catalog-heading{position:relative;padding:12px 0 14px;background:var(--paper);box-shadow:0 5px 12px #80582208;margin-bottom:16px}
  .page-home .catalog-heading:before{content:"";position:absolute;inset:0 -20px;z-index:-1;background:var(--paper);border-bottom:1px solid #efe5d7;pointer-events:none}
  .page-home .catalog-heading .overline{display:none}
  .page-home .catalog-heading h2{font-size:22px;line-height:1.35}
@@ -101,3 +101,26 @@
 @media(max-width:360px){.topbar{gap:6px}.topbar .brand{gap:4px}.topbar .brand-mark{width:21px;height:24px}.topbar .brand strong{font-size:12px}.topbar .profile-actions{gap:5px}.topbar .profile-pill>span:nth-child(2){max-width:30px}.topbar .topnav{font-size:11px}.topbar .topnav a+a{margin-left:3px;padding-left:9px}}
 
 @media(max-width:540px){.page-home .catalog-heading:before{inset:0 -16px}}
+
+/* Horizontal phone cards with a larger, fully visible cover. */
+@media(max-width:760px){
+ .game-card{grid-template-columns:44% minmax(0,1fr)}
+ .game-card>.cover-art{height:100%;min-height:290px;align-self:stretch;border-bottom:0}
+ .game-card>.cover-art.has-cover{border-bottom:0;border-right:1px solid #eddbc2}
+ .game-card>.cover-art.has-cover img{padding:10px 6px;object-fit:contain}
+ .game-card .card-content{padding:13px 10px 12px}
+ .game-card .card-title-row{gap:5px}
+ .game-card .card-title-row h3{font-size:18px;line-height:1.4}
+ .game-card .eyebrow{font-size:8px}
+ .game-card .game-description{font-size:11px;line-height:1.6;margin:7px 0 8px;-webkit-line-clamp:3}
+ .game-card .game-facts{gap:4px;font-size:9px;margin-bottom:4px}
+ .game-card .rate-picker{margin-top:auto;padding:7px 0 8px;font-size:9px}
+ .game-card .open-rating{padding:7px 6px;font-size:9px}
+ .game-card .card-actions{gap:6px;margin-top:0}
+ .game-card .want-button,.game-card .vote-button{min-height:48px;padding:9px 5px;font-size:12px;gap:4px}
+ .game-card .want-button svg{width:14px;height:14px}
+ .game-card .vote-button svg{width:14px;height:16px}
+ .game-card .cover-category{top:10px;left:9px;padding:5px 7px}
+ .game-card .new-tag{bottom:10px;left:9px}
+}
+@media(max-width:360px){.game-card{grid-template-columns:42% minmax(0,1fr)}.game-card .card-title-row h3{font-size:16px}.game-card .card-content{padding:12px 8px}.game-card .want-button,.game-card .vote-button{font-size:11px;padding:8px 4px;gap:3px}}
