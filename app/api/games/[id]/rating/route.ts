@@ -12,7 +12,7 @@ export async function PUT(request: Request, context: RouteContext) {
   try {
     const { id } = await context.params;
     const payload = (await request.json()) as { userId?: unknown; score?: unknown };
-    if (!isUserId(payload.userId) || !Number.isInteger(payload.score) || Number(payload.score) < 1 || Number(payload.score) > 5) return json(request, { error: "请选择 1–5 星。" }, 400);
+    if (!isUserId(payload.userId) || typeof payload.score !== "number" || !Number.isFinite(payload.score) || !Number.isInteger(payload.score * 2) || payload.score < 0.5 || payload.score > 5) return json(request, { error: "请选择 0.5–5 星，每半星一档。" }, 400);
     if (!(await ensureInteractionGame(id))) return json(request,{error:"这款桌游已不在目录中。"},404);
     const db = getDb();
     await db.insert(ratings).values({ gameId: id, userId: payload.userId, score: Number(payload.score) }).onConflictDoUpdate({
