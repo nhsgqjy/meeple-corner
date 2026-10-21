@@ -32,6 +32,7 @@ export const ratings = sqliteTable(
     gameId: text("game_id").notNull().references(() => games.id, { onDelete: "cascade" }),
     userId: text("user_id").notNull(),
     score: integer("score").notNull(),
+    comment: text("comment").notNull().default(""),
     updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
   },
   (table) => [primaryKey({ columns: [table.gameId, table.userId] })],
