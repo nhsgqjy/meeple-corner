@@ -1,0 +1,12 @@
+.dev.vars*
+.env*
+.sites-runtime
+.wrangler
+.openai
+.git
+.next
+.vinext
+dist
+pages-dist
+node_modules
+*.tsbuildinfo
