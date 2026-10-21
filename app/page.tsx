@@ -3,10 +3,10 @@
 import { cleanNickname, isUserId } from "../lib/boardgame";
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 
-type Game = { id:string; title:string; category:string; players:string; minutes:number; durationLabel?:string; complexity:string; description:string; symbol:string; accent:string; coverUrl:string; coverMobileUrl?:string; coverDesktopUrl?:string; featured:boolean; recommendationOrder?:number; createdAt:string; isNew:boolean; wantCount:number; myWant:boolean; voteCount:number; myVote:boolean; ratingCount:number; averageRating:number; myRating:number };
+type Game = { id:string; title:string; category:string; players:string; minutes:number; durationLabel?:string; complexity:string; description:string; symbol:string; accent:string; coverUrl:string; coverMobileUrl?:string; coverDesktopUrl?:string; featured:boolean; recommendationOrder?:number; createdAt:string; isNew:boolean; wantCount:number; myWant:boolean; voteCount:number; myVote:boolean; ratingCount:number; averageRating:number; myRating:number; myComment:string };
 type Round = { id:string; title:string; isActive:boolean; createdAt:string; closedAt:string|null };
 type Identity = { userId:string; nickname:string };
-type Metric = Pick<Game,"id"|"wantCount"|"myWant"|"voteCount"|"myVote"|"ratingCount"|"averageRating"|"myRating">;
+type Metric = Pick<Game,"id"|"wantCount"|"myWant"|"voteCount"|"myVote"|"ratingCount"|"averageRating"|"myRating"|"myComment">;
 type CatalogEntry = Omit<Game,keyof Omit<Metric,"id">>;
 type CatalogData = { games:Metric[]; currentRound:Round|null; participantCount:number; roundHistory:Round[] };
 type Modal = "nickname"|"admin"|"round"|"rating"|null;
@@ -58,7 +58,7 @@ function BoardCard({game,onWant,onVote,onRate,hasRound,busy}:{game:Game;onWant:(
   <Cover game={game}/><div className="card-content"><div className="card-title-row"><div><p className="eyebrow">{game.category}</p><h3>{game.title}</h3>{game.ratingCount>0&&<div className="rating-row title-rating"><Stars value={game.averageRating} label={"平均评分 "+game.averageRating.toFixed(1)}/><span className="rating-copy">{game.averageRating.toFixed(1)+" · "+game.ratingCount+" 人"}</span></div>}</div><span className="vote-count" title="想玩人数"><Heart filled={game.myWant}/>{game.wantCount}</span></div>
   <p className="game-description">{game.description||"挑一款好游戏，和朋友一起开局。"}</p><div className="game-facts"><span>♙ {game.players} 人</span><span>◷ {game.durationLabel || `${game.minutes} 分钟`}</span><span className={"weight weight-"+game.complexity}>{game.complexity}</span></div>
   
-  <div className="rate-picker"><span>{game.myRating?"我的评分":"玩过这款？"}</span><button type="button" className="open-rating" disabled={busy} onClick={()=>onRate(game,game.myRating)}>{game.myRating?<><span className="personal-score">★ {game.myRating.toFixed(1)}</span><span>修改评分 ›</span></>:"去评分 ☆"}</button></div>
+  <div className="rate-picker"><span>{game.myRating?"我的评分":"玩过这款？"}</span><button type="button" className="open-rating" disabled={busy} onClick={()=>onRate(game,game.myRating)}>{game.myRating?<><span className="personal-score">★ {game.myRating.toFixed(1)}</span></>:"去评分 ☆"}</button></div>
   <div className="card-actions"><button type="button" className={"want-button "+(game.myWant?"wanted":"")} aria-pressed={game.myWant} aria-label={(game.myWant?"取消想玩":"想玩")+game.title} onClick={()=>onWant(game)} disabled={busy}><Heart filled={game.myWant}/><span>{game.myWant?"已想玩":"想玩"}</span></button><button type="button" className={"vote-button "+(game.myVote?"voted":"")} aria-pressed={game.myVote} aria-label={(game.myVote?"取消本轮投票":"本轮投票给")+game.title} title={hasRound?"每款一票，可同时投多款":"等待管理员开启本轮投票"} disabled={busy||!hasRound} onClick={()=>onVote(game)}><Meeple/><span>{game.myVote?"已投票":"投票"}</span></button></div></div></article>; }
 export default function Home() {
   const [page,setPage]=useState<Page>("home");
@@ -66,14 +66,14 @@ export default function Home() {
   useEffect(()=>{document.title=page==="library"?"桌游小馆 · 桌游库":"桌游小馆 · 今天玩什么？";},[page]);
   const [identity,setIdentity]=useState<Identity|null>(null),[nameDraft,setNameDraft]=useState("");
   const [entries,setEntries]=useState<CatalogEntry[]>([]),[metrics,setMetrics]=useState<Metric[]>([]),[catalogError,setCatalogError]=useState(""),[interactionReady,setInteractionReady]=useState(false);
-  const games=useMemo(()=>entries.map(g=>({...g,wantCount:0,myWant:false,voteCount:0,myVote:false,ratingCount:0,averageRating:0,myRating:0,...metrics.find(m=>m.id===g.id)})),[entries,metrics]);
+  const games=useMemo(()=>entries.map(g=>({...g,wantCount:0,myWant:false,voteCount:0,myVote:false,ratingCount:0,averageRating:0,myRating:0,myComment:"",...metrics.find(m=>m.id===g.id)})),[entries,metrics]);
   const [round,setRound]=useState<Round|null>(null),[history,setHistory]=useState<Round[]>([]),[participantCount,setParticipantCount]=useState(0);
   const [query,setQuery]=useState(""),[category,setCategory]=useState("全部类型"),[scope,setScope]=useState<Scope>("人气");
   const [modal,setModal]=useState<Modal>(null),[isAdmin,setIsAdmin]=useState(false),[adminKey,setAdminKey]=useState(""),[adminDraft,setAdminDraft]=useState("");
   const [roundTitle,setRoundTitle]=useState("");
   const [busyIds,setBusyIds]=useState<Set<string>>(new Set()),[formBusy,setFormBusy]=useState(false),[formError,setFormError]=useState(""),[notice,setNotice]=useState(""),[loading,setLoading]=useState(true),[loadError,setLoadError]=useState("");
   const pendingGames=useRef(new Set<string>()),ratingSubmit=useRef(false),hasLoaded=useRef(false);
-  const [ratingGameId,setRatingGameId]=useState(""),[ratingDraft,setRatingDraft]=useState(0),[ratingSaving,setRatingSaving]=useState(false),[ratingSaved,setRatingSaved]=useState(false);
+  const [ratingGameId,setRatingGameId]=useState(""),[ratingDraft,setRatingDraft]=useState(0),[commentDraft,setCommentDraft]=useState(""),[ratingSaving,setRatingSaving]=useState(false),[ratingSaved,setRatingSaved]=useState(false);
   const ratingGame=games.find(g=>g.id===ratingGameId);
   const searchRef=useRef<HTMLInputElement>(null),sequence=useRef(0),dialogRef=useRef<HTMLElement>(null);
   const reloadCatalog=useCallback(async()=>{setLoading(true);try{const response=await fetch(asset("/catalog/games.json"));if(!response.ok)throw new Error("桌游目录加载失败，请重试。");const data=await response.json() as {games:CatalogEntry[]};if(!Array.isArray(data.games))throw new Error("桌游目录格式有误。");setEntries(data.games);setCatalogError("");}catch(e){setCatalogError(e instanceof Error?e.message:"桌游目录加载失败。");}finally{setLoading(false);}},[]);
@@ -104,12 +104,12 @@ export default function Home() {
     setIdentity(saved);setNameDraft(nickname);setFormError("");setModal(null);
   }
   async function toggle(game:Game,kind:"want"|"vote"){if(!identity)return;if(!interactionReady){setNotice("互动服务暂时不可用，请重试后再操作。");return;}if(!identity.nickname){openModal("nickname");return;}if(kind==="vote"&&!round){setNotice("请等待管理员开启新一轮投票。");return;}if(pendingGames.current.has(game.id))return;pendingGames.current.add(game.id);setBusyIds(new Set(pendingGames.current));try{await request("/api/games/"+game.id+"/"+kind,{method:"PUT",body:JSON.stringify({userId:identity.userId,active:kind==="want"?!game.myWant:!game.myVote,...(kind==="vote"?{roundId:round?.id}:{})})});if(!(await load(identity.userId))){setNotice("操作已保存，但最新汇总暂时无法刷新，请重试。");return;}setNotice(kind==="want"?(game.myWant?"已取消想玩":"已加入想玩清单"):(game.myVote?"已取消本轮投票":"已投给「"+game.title+"」"));}catch(e){setNotice(e instanceof Error?e.message:"保存失败，请重试。");}finally{pendingGames.current.delete(game.id);setBusyIds(new Set(pendingGames.current));}}
-  function chooseRating(game:Game){if(!identity?.nickname){openModal("nickname");return;}setRatingGameId(game.id);setRatingDraft(game.myRating);setRatingSaved(false);openModal("rating");}
+  function chooseRating(game:Game){if(!identity?.nickname){openModal("nickname");return;}setRatingGameId(game.id);setRatingDraft(game.myRating);setCommentDraft(game.myComment||"");setRatingSaved(false);openModal("rating");}
   async function saveRating(e:FormEvent){
     e.preventDefault();if(!identity||!ratingGame||ratingDraft<.5||ratingSubmit.current)return;
     ratingSubmit.current=true;sequence.current++;setRatingSaving(true);setFormError("");
     try{
-      const result=await request<{ok:boolean;rating:Pick<Game,"id"|"ratingCount"|"averageRating"|"myRating">}>("/api/games/"+ratingGame.id+"/rating",{method:"PUT",body:JSON.stringify({userId:identity.userId,score:ratingDraft})});
+      const result=await request<{ok:boolean;rating:Pick<Game,"id"|"ratingCount"|"averageRating"|"myRating"|"myComment">}>("/api/games/"+ratingGame.id+"/rating",{method:"PUT",body:JSON.stringify({userId:identity.userId,score:ratingDraft,comment:commentDraft})});
       setMetrics(previous=>{const found=previous.find(m=>m.id===ratingGame.id);return [...previous.filter(m=>m.id!==ratingGame.id),{wantCount:found?.wantCount||0,myWant:found?.myWant||false,voteCount:found?.voteCount||0,myVote:found?.myVote||false,...result.rating}];});
       setRatingSaved(true);
     }catch(error){setFormError(error instanceof Error?error.message:"评分未保存，请重试。");}
@@ -146,12 +146,13 @@ export default function Home() {
   {modal==="admin"&&isAdmin&&<><p className="overline">SHELF KEEPER</p><h2 id="dialog-title">管理面板</h2><p className="dialog-intro">为今天开启一轮新投票。桌游清单与图片在 GitHub 中维护。</p><div className="admin-toolbar"><button type="button" className="new-round-button" onClick={newRound}>＋ 新开投票</button></div><div className="admin-round-state"><span>{round?"当前投票进行中":"当前没有进行中的投票"}</span><small>{history.length?"最近 "+history.length+" 轮历史记录已保留":"想玩清单和评分独立于投票轮次"}</small></div><p className="dialog-intro">目录文件：public/catalog/games.json<br/>封面目录：public/images/</p><a className="secondary-button" href="https://github.com/nhsgqjy/meeple-corner/tree/main/public" target="_blank" rel="noreferrer">前往 GitHub 维护目录 ↗</a><button className="exit-admin" type="button" onClick={()=>{setAdminKey("");setIsAdmin(false);setModal(null);setNotice("已退出管理模式");}}>退出管理模式</button></>}
   {modal==="rating"&&ratingGame&&<form className={"rating-form "+(ratingSaved?"is-saved":"")} onSubmit={saveRating}>
     <div className="rating-game-heading"><Cover game={ratingGame} small/><div><p className="overline">我的游戏体验</p><h2 id="dialog-title">{ratingGame.title}</h2></div></div>
-    {ratingSaved?<div className="rating-success" role="status"><span className="saved-check">✓</span><h3>评分已保存</h3><p>你的 <strong>{ratingDraft.toFixed(1)} 星</strong> 已记下，之后随时可以修改。</p><Stars value={ratingDraft} label={ratingDraft+" 星"}/><button type="button" className="primary-button" onClick={()=>setModal(null)}>完成</button></div>:<>
+    {ratingSaved?<div className="rating-success" role="status"><span className="saved-check">✓</span><h3>评分已保存</h3><p>你的 <strong>{ratingDraft.toFixed(1)} 星</strong> 已记下，之后随时可以修改。</p><Stars value={ratingDraft} label={ratingDraft+" 星"}/>{commentDraft.trim()&&<p className="saved-comment">“{commentDraft.trim()}”</p>}<button type="button" className="primary-button" onClick={()=>setModal(null)}>完成</button></div>:<>
       <p className="rating-invitation">这次体验怎么样？滑动星星，选一个你的分数。</p>
       <div className="rating-score-preview" aria-live="polite"><strong>{ratingDraft?ratingDraft.toFixed(1):"—"}</strong><span>{ratingDraft?"/ 5":"还没选分数"}</span></div>
       <div className="rating-adjust"><button type="button" aria-label="减少半星" disabled={ratingSaving||ratingDraft<=.5} onClick={()=>setRatingDraft(n=>Math.max(.5,n-.5))}>−</button><Stars value={ratingDraft} label={"给"+ratingGame.title+"评分"} onChange={setRatingDraft} disabled={ratingSaving}/><button type="button" aria-label="增加半星" disabled={ratingSaving||ratingDraft>=5} onClick={()=>setRatingDraft(n=>Math.min(5,n+.5))}>＋</button></div>
       <p className="rating-caption">{ratingDraft>=4.5?"太喜欢了，还想再开一局！":ratingDraft>=3.5?"很好玩，值得再玩。":ratingDraft>=2.5?"还不错，看场合再玩。":ratingDraft>0?"这次不太合我的口味。":"支持半星，选好后再确认。"}</p>
       {ratingGame.myRating>0&&<p className="previous-rating">上次评分：{ratingGame.myRating.toFixed(1)} 星</p>}
+      <label className="rating-comment-label">一句话评论 <span>选填</span><textarea maxLength={80} rows={2} disabled={ratingSaving} placeholder="比如：节奏轻快，很适合朋友聚会。" value={commentDraft} onChange={e=>setCommentDraft(e.target.value.replace(/[\r\n]+/g," "))}/><small>{commentDraft.length}/80</small></label>
       {formError&&<p className="form-error" role="alert">{formError}</p>}
       <button className="primary-button" type="submit" disabled={ratingSaving||ratingDraft<.5}>{ratingSaving?"正在保存…":ratingDraft?"确认评分 · "+ratingDraft.toFixed(1)+" 星":"请先选择分数"}</button>
       <button type="button" className="rating-cancel" disabled={ratingSaving} onClick={()=>setModal(null)}>暂不评分</button>
