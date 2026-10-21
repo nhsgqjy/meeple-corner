@@ -15,13 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Extract source package
-        run: unzip -n meeple-corner-github-source-v4.zip
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
           cache: npm
       - run: npm ci --include=dev --include=optional
+      - run: npm run catalog:validate
+      - run: node node_modules/typescript/bin/tsc --noEmit --incremental false
       - name: Build static frontend
         run: npm run build:pages
         env:
