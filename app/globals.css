@@ -99,3 +99,5 @@
  .page-home .global-notice{top:calc(var(--mobile-header-height) + 8px)}
 }
 @media(max-width:360px){.topbar{gap:6px}.topbar .brand{gap:4px}.topbar .brand-mark{width:21px;height:24px}.topbar .brand strong{font-size:12px}.topbar .profile-actions{gap:5px}.topbar .profile-pill>span:nth-child(2){max-width:30px}.topbar .topnav{font-size:11px}.topbar .topnav a+a{margin-left:3px;padding-left:9px}}
+
+@media(max-width:540px){.page-home .catalog-heading:before{inset:0 -16px}}
