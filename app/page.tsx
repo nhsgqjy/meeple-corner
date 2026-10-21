@@ -110,7 +110,7 @@ export default function Home() {
     ratingSubmit.current=true;sequence.current++;setRatingSaving(true);setFormError("");
     try{
       const result=await request<{ok:boolean;rating:Pick<Game,"id"|"ratingCount"|"averageRating"|"myRating">}>("/api/games/"+ratingGame.id+"/rating",{method:"PUT",body:JSON.stringify({userId:identity.userId,score:ratingDraft})});
-      setMetrics(previous=>{const found=previous.find(m=>m.id===ratingGame.id);return [...previous.filter(m=>m.id!==ratingGame.id),{id:ratingGame.id,wantCount:found?.wantCount||0,myWant:found?.myWant||false,voteCount:found?.voteCount||0,myVote:found?.myVote||false,...result.rating}];});
+      setMetrics(previous=>{const found=previous.find(m=>m.id===ratingGame.id);return [...previous.filter(m=>m.id!==ratingGame.id),{wantCount:found?.wantCount||0,myWant:found?.myWant||false,voteCount:found?.voteCount||0,myVote:found?.myVote||false,...result.rating}];});
       setRatingSaved(true);
     }catch(error){setFormError(error instanceof Error?error.message:"评分未保存，请重试。");}
     finally{ratingSubmit.current=false;setRatingSaving(false);}
