@@ -127,3 +127,6 @@
 
 /* Player colors are shared by the profile and every ballot. */
 .topbar .avatar.player-meeple{background:#ffdd70;border-radius:50%;width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;flex:none}.avatar.player-meeple svg{width:15px;height:17px;filter:none}@media(max-width:540px){.topbar .avatar.player-meeple{width:28px;height:28px}.avatar.player-meeple svg{width:12px;height:14px}}.nickname-meeple{background:transparent}.nickname-meeple svg{width:38px;height:42px}.meeple-votes svg{filter:drop-shadow(0 2px 0 #17244318)!important}
+
+/* Show the complete short gameplay summary at every screen width. */
+.game-card .game-description{display:block;height:auto;min-height:0;max-height:none;overflow:visible;-webkit-line-clamp:unset;overflow-wrap:anywhere}
