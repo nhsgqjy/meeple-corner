@@ -1,0 +1,52 @@
+name: Deploy website to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cloudflare-pages-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 23bd24104153ff6a219db8150692bc22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Check deployment credential
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::error::Add CLOUDFLARE_API_TOKEN to repository Actions secrets with Cloudflare Pages Edit permission."
+            exit 1
+          fi
+      - run: npm ci --include=dev --include=optional
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate responsive covers
+        run: |
+          python -m pip install Pillow==11.3.0
+          python scripts/optimize-covers.py
+      - run: npm run catalog:validate
+      - name: Build same-origin Pages website
+        run: node scripts/build-cloudflare-pages.mjs
+      - name: Publish to existing Pages project
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          WRANGLER_SEND_METRICS: 'false'
+        run: node node_modules/wrangler/bin/wrangler.js pages deploy pages-dist --project-name meeple-corner --branch main --commit-hash "$GITHUB_SHA"
+      - name: Report deployment
+        run: echo 'Website published at https://meeple-corner.pages.dev/' >> "$GITHUB_STEP_SUMMARY"
