@@ -5,8 +5,28 @@ import { and, eq, sql } from "drizzle-orm";
 import { getDb } from "@/db";
 import { ratings } from "@/db/schema";
 import { isUserId } from "@/lib/boardgame";
+import { findCatalogGame } from "@/lib/catalog";
+import { env } from "cloudflare:workers";
 
 type RouteContext = { params: Promise<{ id: string }> };
+
+export async function GET(request: Request, context: RouteContext) {
+  try {
+    const { id } = await context.params;
+    if (!findCatalogGame(id)) return json(request, { error: "这款桌游已不在目录中。" }, 404);
+    const value = new URL(request.url).searchParams.get("page") ?? "0";
+    if (!/^\d{1,3}$/.test(value) || Number(value) > 100) return json(request, { error: "评论页码无效。" }, 400);
+    const page = Number(value);
+    const result = await env.DB!.prepare(`SELECT r.score, r.comment, r.updated_at AS updatedAt, c.color
+      FROM ratings r LEFT JOIN player_colors c ON c.user_id = r.user_id
+      WHERE r.game_id = ? AND r.comment <> ''
+      ORDER BY r.updated_at DESC, r.user_id DESC LIMIT 11 OFFSET ?`).bind(id, page * 10).all();
+    const rows = result.results || [];
+    return json(request, { comments: rows.slice(0, 10), nextPage: rows.length > 10 && page < 100 ? page + 1 : null });
+  } catch {
+    return json(request, { error: "评论暂时加载失败，请稍后重试。" }, 503);
+  }
+}
 
 export async function PUT(request: Request, context: RouteContext) {
   try {
