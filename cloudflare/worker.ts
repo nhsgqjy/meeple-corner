@@ -4,7 +4,7 @@ import { POST as verify } from '../app/api/admin/verify/route';
 import { POST as rounds } from '../app/api/rounds/route';
 import { PUT as want } from '../app/api/games/[id]/want/route';
 import { PUT as vote } from '../app/api/games/[id]/vote/route';
-import { PUT as rating } from '../app/api/games/[id]/rating/route';
+import { PUT as rating, GET as comments } from '../app/api/games/[id]/rating/route';
 import { json, OPTIONS } from '../lib/http';
 import { env } from 'cloudflare:workers';
 
@@ -27,6 +27,7 @@ export default {
       if (pathname === '/api/admin/verify' && request.method === 'POST') return await verify(request);
       if (pathname === '/api/rounds' && request.method === 'POST') return await rounds(request);
       const match = pathname.match(/^\/api\/games\/([^/]+)\/(want|vote|rating)$/);
+      if (match && match[2] === 'rating' && request.method === 'GET') return await comments(request, { params: Promise.resolve({ id: decodeURIComponent(match[1]) }) });
       if (match && request.method === 'PUT') {
         const context = { params: Promise.resolve({ id: decodeURIComponent(match[1]) }) };
         return await ({ want, vote, rating }[match[2] as 'want'|'vote'|'rating'])(request, context);
