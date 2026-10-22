@@ -9,7 +9,7 @@
       "minutes": 12,
       "durationLabel": "约12–32分钟",
       "complexity": "轻松",
-      "description": "地核桌游原创聚会卡牌游戏。首领阅读三张问题并秘密作答，其他玩家猜首领的答案；命中得分后分享选择理由，核心是互相了解与默契。",
+      "description": "猜中伙伴对问题的秘密答案，靠默契赢取分数。",
       "symbol": "♟",
       "accent": "coral",
       "coverUrl": "/images/games/spill-the-tea.png",
@@ -20,7 +20,9 @@
       "sourceUrl": "https://game.3loumao.org/318282669",
       "photoSourceUrl": "https://image.gcores.com/b4ca25559821b67df79e5397d150ff30.png",
       "dataSourceUrl": "https://hukezhuoyou.asia/",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/spill-the-tea.mobile.webp",
+      "coverDesktopUrl": "/images/games/spill-the-tea.desktop.webp"
     },
     {
       "id": "skull",
@@ -30,7 +32,7 @@
       "minutes": 15,
       "durationLabel": "约15–30分钟",
       "complexity": "轻松",
-      "description": "玩家轮流放置花朵与骷髅圆片并下注，尝试在不翻到骷髅的情况下完成挑战。",
+      "description": "放下花朵或骷髅，下注翻牌数量，避开骷髅赢挑战。",
       "symbol": "♟",
       "accent": "gold",
       "coverUrl": "/images/games/skull.png",
@@ -41,7 +43,9 @@
       "sourceUrl": "https://www.asmodee.it/product/skull/",
       "photoSourceUrl": "https://cdn.svc.asmodee.net/production-asmodeeit/uploads/2022/09/Box_Skull_Left.png",
       "dataSourceUrl": "https://www.asmodee.it/product/skull/",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/skull.mobile.webp",
+      "coverDesktopUrl": "/images/games/skull.desktop.webp"
     },
     {
       "id": "saboteur",
@@ -51,7 +55,7 @@
       "minutes": 30,
       "durationLabel": "约30分钟",
       "complexity": "轻松",
-      "description": "玩家暗中分成淘金矮人与破坏者，铺设或阻断隧道，争夺矿洞中的金块。",
+      "description": "暗藏阵营铺设隧道，寻找黄金或破坏淘金计划。",
       "symbol": "♟",
       "accent": "mint",
       "coverUrl": "/images/games/saboteur.png",
@@ -62,7 +66,9 @@
       "sourceUrl": "https://www.brain-games.ee/products/saboteur",
       "photoSourceUrl": "https://www.brain-games.ee/cdn/shop/products/BRG_SAB_1_550x700.png?v=1658745892",
       "dataSourceUrl": "https://www.brain-games.ee/products/saboteur",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/saboteur.mobile.webp",
+      "coverDesktopUrl": "/images/games/saboteur.desktop.webp"
     },
     {
       "id": "werewords",
@@ -72,7 +78,7 @@
       "minutes": 10,
       "durationLabel": "约10分钟",
       "complexity": "轻松",
-      "description": "村民通过是非问题猜出秘密词，狼人暗中误导，先知则要帮助大家又不暴露身份。",
+      "description": "用是非问题猜词，在狼人的误导中找出秘密词。",
       "symbol": "♟",
       "accent": "plum",
       "coverUrl": "/images/games/werewords.jpg",
@@ -83,7 +89,9 @@
       "sourceUrl": "https://shop.painkillerbg.com/zh/collections/adventure-and-detective/products/werewords-cn",
       "photoSourceUrl": "https://shop.painkillerbg.com/cdn/shop/files/TP00031590003381_R_m_1024x1024.jpg?v=1740953807",
       "dataSourceUrl": "https://shop.painkillerbg.com/zh/collections/adventure-and-detective/products/werewords-cn",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/werewords.mobile.webp",
+      "coverDesktopUrl": "/images/games/werewords.desktop.webp"
     },
     {
       "id": "wingspan-pocket",
@@ -93,7 +101,7 @@
       "minutes": 25,
       "durationLabel": "约25–35分钟",
       "complexity": "适中",
-      "description": "《展翅翱翔》的轻量独立卡牌版；玩家依次收集食物、建造鸟类并触发鸟牌效果，体验压缩为较短的单排引擎构筑。",
+      "description": "收集食物、打出鸟牌，连锁触发能力积累分数。",
       "symbol": "♟",
       "accent": "coral",
       "coverUrl": "/images/games/wingspan-pocket.png",
@@ -104,7 +112,9 @@
       "sourceUrl": "https://store.stonemaiergames.com/products/wingspan-pocket",
       "photoSourceUrl": "https://store.stonemaiergames.com/cdn/shop/files/3d-wingspan-pocket-square.webp?v=1781108132",
       "dataSourceUrl": "https://boardgamegeek.com/boardgame/473508/wingspan-pocket",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/wingspan-pocket.mobile.webp",
+      "coverDesktopUrl": "/images/games/wingspan-pocket.desktop.webp"
     },
     {
       "id": "magical-athlete",
@@ -114,7 +124,7 @@
       "minutes": 30,
       "durationLabel": "约30分钟",
       "complexity": "轻松",
-      "description": "玩家选秀组队，再派出能力各异的选手参加掷骰竞速，争取每轮名次积分。",
+      "description": "挑选能力各异的选手，掷骰竞速争夺名次积分。",
       "symbol": "♟",
       "accent": "gold",
       "coverUrl": "/images/games/magical-athlete.jpg",
@@ -125,7 +135,9 @@
       "sourceUrl": "https://www.cmyk.games/products/magical-athlete",
       "photoSourceUrl": "https://www.cmyk.games/cdn/shop/files/M_A12253_2400x.jpg?v=1757697348",
       "dataSourceUrl": "https://www.cmyk.games/products/magical-athlete",
-      "recommendationOrder": 5
+      "recommendationOrder": 5,
+      "coverMobileUrl": "/images/games/magical-athlete.mobile.webp",
+      "coverDesktopUrl": "/images/games/magical-athlete.desktop.webp"
     },
     {
       "id": "hot-streak",
@@ -135,7 +147,7 @@
       "minutes": 20,
       "durationLabel": "约20分钟",
       "complexity": "轻松",
-      "description": "玩家下注于混乱的吉祥物赛跑，并通过牌堆影响选手前进、碰撞或出局。",
+      "description": "下注吉祥物赛跑，用卡牌影响选手前进与碰撞。",
       "symbol": "♟",
       "accent": "mint",
       "coverUrl": "/images/games/hot-streak.png",
@@ -146,7 +158,9 @@
       "sourceUrl": "https://www.philibertnet.com/en/cmyk/170621-hot-streak-3558380138686.html",
       "photoSourceUrl": "https://cdn1.philibertnet.com/829533/hot-streak-3558380138686.jpg",
       "dataSourceUrl": "https://www.philibertnet.com/en/cmyk/170621-hot-streak-3558380138686.html",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/hot-streak.mobile.webp",
+      "coverDesktopUrl": "/images/games/hot-streak.desktop.webp"
     },
     {
       "id": "las-vegas-royale",
@@ -156,7 +170,7 @@
       "minutes": 30,
       "durationLabel": "约30分钟",
       "complexity": "轻松",
-      "description": "玩家掷骰并把同点骰子投入对应赌场，争夺奖金；每家赌场骰数相同的玩家会互相抵消。豪华版加入骰塔与赌场主题配件。",
+      "description": "掷骰争夺赌场奖金，骰数相同的玩家互相抵消。",
       "symbol": "♟",
       "accent": "plum",
       "coverUrl": "/images/games/las-vegas-royale.png",
@@ -167,7 +181,9 @@
       "sourceUrl": "https://www.broadwaytoys.com/collections/board-games",
       "photoSourceUrl": "https://shoplineimg.com/5f0c1cae83bd33004d7d5783/5f3a40664470d4003359464c/800x.png",
       "dataSourceUrl": "https://boardgamegeek.com/boardgame/117959/las-vegas",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/las-vegas-royale.mobile.webp",
+      "coverDesktopUrl": "/images/games/las-vegas-royale.desktop.webp"
     },
     {
       "id": "colt-express",
@@ -177,7 +193,7 @@
       "minutes": 40,
       "durationLabel": "约40分钟",
       "complexity": "适中",
-      "description": "玩家在立体火车上暗中规划行动，移动、开枪并抢夺财宝，力争成为最富有的劫匪。",
+      "description": "暗中安排火车上的行动，移动、开枪并抢夺财宝。",
       "symbol": "♟",
       "accent": "coral",
       "coverUrl": "/images/games/colt-express.jpg",
@@ -188,7 +204,9 @@
       "sourceUrl": "https://www.ludonauta.es/juegos-mesas/colt-express-2014",
       "photoSourceUrl": "https://www.ludonauta.es/files/ludico/juegos-mesas/juego-mesa-colt-express-2014-1053985604.jpg",
       "dataSourceUrl": "https://www.ludonauta.es/juegos-mesas/colt-express-2014",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/colt-express.mobile.webp",
+      "coverDesktopUrl": "/images/games/colt-express.desktop.webp"
     },
     {
       "id": "pokemon-safari",
@@ -198,7 +216,7 @@
       "minutes": 30,
       "durationLabel": "时长待补充",
       "complexity": "轻松",
-      "description": "宝可梦主题的轻量手牌游戏；中文介绍称其原型为《Paper Safari》。此处按可核实的宝可梦主题版封面关联，正式英文商品名仍需出版社资料确认。",
+      "description": "抽牌替换面前的宝可梦，争取以最低总分结束回合。",
       "symbol": "♟",
       "accent": "gold",
       "coverUrl": "/images/games/pokemon-safari.jpg",
@@ -209,7 +227,9 @@
       "sourceUrl": "https://www.yes24.com/product/goods/121931819",
       "photoSourceUrl": "https://image.yes24.com/goods/121931819/XL",
       "dataSourceUrl": "https://www.yes24.com/product/goods/121931819",
-      "recommendationOrder": 4
+      "recommendationOrder": 4,
+      "coverMobileUrl": "/images/games/pokemon-safari.mobile.webp",
+      "coverDesktopUrl": "/images/games/pokemon-safari.desktop.webp"
     },
     {
       "id": "ding",
@@ -219,7 +239,7 @@
       "minutes": 10,
       "durationLabel": "约10分钟",
       "complexity": "轻松",
-      "description": "观察桌上玩家的行为；当行为符合手牌提示时喊“Ding!”并弃牌，目标是先出完手牌。",
+      "description": "观察伙伴的行为，符合手牌提示就喊铃弃牌。",
       "symbol": "♟",
       "accent": "mint",
       "coverUrl": "/images/games/ding.jpg",
@@ -230,7 +250,9 @@
       "sourceUrl": "https://hutter-trade.com/en/product-range/product/ding-von-huch/",
       "photoSourceUrl": "https://produkte.hutter-trade.com/files/products/1175/100/en/large/familie-ding-gb-von-huch-4260071883858-Box.jpg",
       "dataSourceUrl": "https://hutter-trade.com/en/product-range/product/ding-von-huch/",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/ding.mobile.webp",
+      "coverDesktopUrl": "/images/games/ding.desktop.webp"
     },
     {
       "id": "the-gang",
@@ -240,7 +262,7 @@
       "minutes": 20,
       "durationLabel": "约20分钟",
       "complexity": "适中",
-      "description": "合作扑克游戏，玩家不直接交流牌力判断，尝试按牌型强弱完成一连串保险箱挑战。",
+      "description": "不透露手牌，合作判断牌力排序，联手破解保险箱。",
       "symbol": "♟",
       "accent": "plum",
       "coverUrl": "/images/games/the-gang.jpg",
@@ -251,7 +273,9 @@
       "sourceUrl": "https://www.gamesmen.com.au/the-gang-the-cooperative-poker-card-game",
       "photoSourceUrl": "https://static.gamesmen.com.au/media/catalog/product/cache/57ddbad6affa8d28869fa47188b75842/t/h/the_gang_the_cooperative_poker_card_game_3_.jpg",
       "dataSourceUrl": "https://www.gamesmen.com.au/the-gang-the-cooperative-poker-card-game",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/the-gang.mobile.webp",
+      "coverDesktopUrl": "/images/games/the-gang.desktop.webp"
     },
     {
       "id": "ghost-blitz",
@@ -261,7 +285,7 @@
       "minutes": 20,
       "durationLabel": "约20–30分钟",
       "complexity": "轻松",
-      "description": "翻牌后快速判断并抢取正确木制物件，考验观察和反应速度。",
+      "description": "翻牌辨认颜色与物件，抢先抓住正确目标。",
       "symbol": "♟",
       "accent": "coral",
       "coverUrl": "/images/games/ghost-blitz.png",
@@ -272,7 +296,9 @@
       "sourceUrl": "https://www.qlivestore.com/products/ghost-blitz-geistesblitz",
       "photoSourceUrl": "https://www.qlivestore.com/cdn/shop/files/1_a521c20f-25cc-4cd7-b3f0-215584e3df8f.png?v=1747131145&width=1946",
       "dataSourceUrl": "https://www.qlivestore.com/products/ghost-blitz-geistesblitz",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/ghost-blitz.mobile.webp",
+      "coverDesktopUrl": "/images/games/ghost-blitz.desktop.webp"
     },
     {
       "id": "durian",
@@ -282,7 +308,7 @@
       "minutes": 20,
       "durationLabel": "约20分钟",
       "complexity": "轻松",
-      "description": "玩家在水果店处理隐藏订单；察觉订单可能过量时敲铃，避免招来愤怒的经理。",
+      "description": "处理隐藏的水果订单，判断超量时机，敲铃揭晓。",
       "symbol": "♟",
       "accent": "gold",
       "coverUrl": "/images/games/durian.jpg",
@@ -293,7 +319,9 @@
       "sourceUrl": "https://www.philibertnet.com/en/oink-games/147621-durian-4571394091920.html",
       "photoSourceUrl": "https://cdn1.philibertnet.com/691708-thickbox_default/durian-4571394091920.jpg",
       "dataSourceUrl": "https://www.philibertnet.com/en/oink-games/147621-durian-4571394091920.html",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/durian.mobile.webp",
+      "coverDesktopUrl": "/images/games/durian.desktop.webp"
     },
     {
       "id": "cabo",
@@ -303,7 +331,7 @@
       "minutes": 45,
       "durationLabel": "约45分钟",
       "complexity": "轻松",
-      "description": "玩家记忆并交换面前的暗置牌，尽可能以最低分结束回合。",
+      "description": "记忆并交换面前的暗牌，争取以最低分结束回合。",
       "symbol": "♟",
       "accent": "mint",
       "coverUrl": "/images/games/cabo.jpg",
@@ -314,7 +342,9 @@
       "sourceUrl": "https://www.gameway.it/p/5091619116154880",
       "photoSourceUrl": "https://www.gameway.it/img/f/medium/239090001.jpg",
       "dataSourceUrl": "https://www.gameway.it/p/5091619116154880",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/cabo.mobile.webp",
+      "coverDesktopUrl": "/images/games/cabo.desktop.webp"
     },
     {
       "id": "flip-7",
@@ -324,7 +354,7 @@
       "minutes": 20,
       "durationLabel": "约20分钟",
       "complexity": "轻松",
-      "description": "逐张翻开数字牌，避免重复数字并决定何时停手；凑齐七张不同数字即可触发奖励。",
+      "description": "翻牌累积分数，避开重复数字，决定见好就收的时机。",
       "symbol": "♟",
       "accent": "plum",
       "coverUrl": "/images/games/flip-7.jpg",
@@ -335,7 +365,9 @@
       "sourceUrl": "https://pandemoniumbooks.com/products/flip-7",
       "photoSourceUrl": "https://pandemoniumbooks.com/cdn/shop/files/usopa172871_web_front_3d_l__66733.jpg?v=1762215077&width=1445",
       "dataSourceUrl": "https://pandemoniumbooks.com/products/flip-7",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/flip-7.mobile.webp",
+      "coverDesktopUrl": "/images/games/flip-7.desktop.webp"
     },
     {
       "id": "six-nimmt",
@@ -345,7 +377,7 @@
       "minutes": 45,
       "durationLabel": "约45分钟",
       "complexity": "轻松",
-      "description": "同时选择数字牌并排入牌列；放下第六张牌的玩家会收走这一列的罚分牛头。",
+      "description": "同时出数字牌接龙，避开第六张，少收罚分牛头。",
       "symbol": "♟",
       "accent": "coral",
       "coverUrl": "/images/games/six-nimmt.jpg",
@@ -356,7 +388,9 @@
       "sourceUrl": "https://www.spieletest.at/gesellschaftsspiel/7326/6-nimmt-30-jahre",
       "photoSourceUrl": "https://www.spieletest.at/storage/images/boardgame/7326/crop/1713785211_6%20nimmt-1.jpg",
       "dataSourceUrl": "https://www.spieletest.at/gesellschaftsspiel/7326/6-nimmt-30-jahre",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/six-nimmt.mobile.webp",
+      "coverDesktopUrl": "/images/games/six-nimmt.desktop.webp"
     },
     {
       "id": "love-letter",
@@ -366,7 +400,7 @@
       "minutes": 15,
       "durationLabel": "约15分钟",
       "complexity": "轻松",
-      "description": "每回合抽一张、打一张，利用角色能力淘汰对手或在牌库耗尽时以最高牌力胜出。",
+      "description": "抽一张、打一张，运用角色能力淘汰对手。",
       "symbol": "♟",
       "accent": "gold",
       "coverUrl": "/images/games/love-letter.jpg",
@@ -377,7 +411,9 @@
       "sourceUrl": "https://www.mastermindtoys.com/products/love-letter",
       "photoSourceUrl": "https://www.mastermindtoys.com/cdn/shop/files/love-letter-247455-6387608.jpg?v=1754613144",
       "dataSourceUrl": "https://www.mastermindtoys.com/products/love-letter",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/love-letter.mobile.webp",
+      "coverDesktopUrl": "/images/games/love-letter.desktop.webp"
     },
     {
       "id": "things-in-rings",
@@ -387,7 +423,7 @@
       "minutes": 20,
       "durationLabel": "约20分钟",
       "complexity": "适中",
-      "description": "玩家把物品卡放入维恩图式的圆环，依据判断逐步推理隐藏规则。",
+      "description": "把物品放入圆环，根据反馈推理隐藏的分类规则。",
       "symbol": "♟",
       "accent": "mint",
       "coverUrl": "/images/games/things-in-rings.jpg",
@@ -398,7 +434,9 @@
       "sourceUrl": "https://store.asmodee.com/products/things-in-rings",
       "photoSourceUrl": "https://store.asmodee.com/cdn/shop/files/GME-TR-image0_2000.jpg?v=1717683559",
       "dataSourceUrl": "https://store.asmodee.com/products/things-in-rings",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/things-in-rings.mobile.webp",
+      "coverDesktopUrl": "/images/games/things-in-rings.desktop.webp"
     },
     {
       "id": "wriggle-roulette",
@@ -408,7 +446,7 @@
       "minutes": 20,
       "durationLabel": "约20分钟",
       "complexity": "轻松",
-      "description": "玩家从袋中摸取鳗鱼与蛇形木块，尽量收集鳗鱼，同时避免蛇群爆发让领先者失去收获。",
+      "description": "摸袋收集鳗鱼，拿捏停手时机，避开蛇群风险。",
       "symbol": "♟",
       "accent": "plum",
       "coverUrl": "/images/games/wriggle-roulette.jpg",
@@ -419,7 +457,9 @@
       "sourceUrl": "https://www.philibertnet.com/en/oink-games/168913-wriggle-roulette-4571394094341.html",
       "photoSourceUrl": "https://cdn2.philibertnet.com/821534-thickbox_default/wriggle-roulette.jpg",
       "dataSourceUrl": "https://www.philibertnet.com/en/oink-games/168913-wriggle-roulette-4571394094341.html",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/wriggle-roulette.mobile.webp",
+      "coverDesktopUrl": "/images/games/wriggle-roulette.desktop.webp"
     },
     {
       "id": "maskmen",
@@ -429,7 +469,7 @@
       "minutes": 20,
       "durationLabel": "约20分钟",
       "complexity": "适中",
-      "description": "玩家打出摔跤手牌争夺出牌权，并逐步确定不同摔跤手之间的强弱关系。",
+      "description": "打出摔跤手牌，争夺出牌权，逐步确定强弱关系。",
       "symbol": "♟",
       "accent": "coral",
       "coverUrl": "/images/games/maskmen.png",
@@ -440,7 +480,9 @@
       "sourceUrl": "https://www.philibertnet.com/en/oink-games/152196-maskmen-4571394094297.html",
       "photoSourceUrl": "https://cdn1.philibertnet.com/721400/maskmen-4571394094297.jpg",
       "dataSourceUrl": "https://www.philibertnet.com/en/oink-games/152196-maskmen-4571394094297.html",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/maskmen.mobile.webp",
+      "coverDesktopUrl": "/images/games/maskmen.desktop.webp"
     },
     {
       "id": "startups",
@@ -450,7 +492,7 @@
       "minutes": 20,
       "durationLabel": "约20分钟",
       "complexity": "适中",
-      "description": "玩家收集不同公司的股份并判断他人投资方向，争夺成为最大股东的收益。",
+      "description": "收集公司股份，观察对手投资，争当最大股东。",
       "symbol": "♟",
       "accent": "gold",
       "coverUrl": "/images/games/startups.jpg",
@@ -461,7 +503,9 @@
       "sourceUrl": "https://www.ebay.com/itm/124238218509",
       "photoSourceUrl": "https://i.ebayimg.com/images/g/YhcAAOSwu2Re9257/s-l1600.jpg",
       "dataSourceUrl": "https://www.ebay.com/itm/124238218509",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/startups.mobile.webp",
+      "coverDesktopUrl": "/images/games/startups.desktop.webp"
     },
     {
       "id": "wandering-towers",
@@ -471,7 +515,7 @@
       "minutes": 30,
       "durationLabel": "约30分钟",
       "complexity": "适中",
-      "description": "玩家移动巫师与高塔，设法封住对手以补充药水，并率先把自己的巫师送入乌鸦堡垒。",
+      "description": "移动高塔困住对手，补充药水，把巫师送进城堡。",
       "symbol": "♟",
       "accent": "mint",
       "coverUrl": "/images/games/wandering-towers.jpg",
@@ -482,7 +526,9 @@
       "sourceUrl": "https://store.asmodee.com/products/wandering-towers",
       "photoSourceUrl": "https://store.asmodee.com/cdn/shop/files/ABTOW01-image0_2000_400x%402x.jpg?v=1778705562",
       "dataSourceUrl": "https://store.asmodee.com/products/wandering-towers",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/wandering-towers.mobile.webp",
+      "coverDesktopUrl": "/images/games/wandering-towers.desktop.webp"
     },
     {
       "id": "castles-of-burgundy",
@@ -492,7 +538,7 @@
       "minutes": 90,
       "durationLabel": "约90–120分钟",
       "complexity": "烧脑",
-      "description": "玩家掷骰取得版块并建设领地，通过城堡、建筑、动物和货物组合积累分数；20周年豪华版包含扩展内容与升级配件。",
+      "description": "掷骰选取版块，建设领地，用建筑与动物组合得分。",
       "symbol": "♟",
       "accent": "plum",
       "coverUrl": "/images/games/castles-of-burgundy.png",
@@ -503,7 +549,9 @@
       "sourceUrl": "https://bgwalker.com/product/The-Castles-of-Burgundy-%E5%8B%83%E6%A0%B9%E5%9C%B0%E5%9F%8E%E5%A0%A1%EF%BC%9A%E8%B1%AA%E8%8F%AF%E7%89%88-%28%E7%B9%81%E4%B8%AD%E7%89%88%29-%28%E9%99%84%E9%80%81Token%E6%9C%A8%E6%9E%B6%29-eyuZ9jfDsjwDWcSS",
       "photoSourceUrl": "https://media.shopages3.com/media/f855/263442714496_sH6MfN2i3wNgBQS9WfGpeMiXi0Eqm4a9ljo5jhVS.png",
       "dataSourceUrl": "https://shop.capstone.hk/products/the-castles-of-burgundy-20th-anniversary-chieng-ver",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/castles-of-burgundy.mobile.webp",
+      "coverDesktopUrl": "/images/games/castles-of-burgundy.desktop.webp"
     },
     {
       "id": "seti",
@@ -513,7 +561,7 @@
       "minutes": 40,
       "durationLabel": "约40分钟起",
       "complexity": "烧脑",
-      "description": "玩家管理研究机构，发射探测器、升级设备并观测星系，寻找系外行星与外星信号。",
+      "description": "发射探测器、升级设备，分析信号寻找外星生命。",
       "symbol": "♟",
       "accent": "coral",
       "coverUrl": "/images/games/seti.jpg",
@@ -524,7 +572,9 @@
       "sourceUrl": "https://www.asmodee.co.uk/products/cge00120-seti-search-for-extraterrestrial-intelligence",
       "photoSourceUrl": "https://www.asmodee.co.uk/cdn/shop/files/CGE00120_1.jpg?v=1764184705&width=2000",
       "dataSourceUrl": "https://www.asmodee.co.uk/products/cge00120-seti-search-for-extraterrestrial-intelligence",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/seti.mobile.webp",
+      "coverDesktopUrl": "/images/games/seti.desktop.webp"
     },
     {
       "id": "vale-of-eternity",
@@ -534,7 +584,7 @@
       "minutes": 30,
       "durationLabel": "约30–45分钟",
       "complexity": "适中",
-      "description": "玩家收集神话生物并召唤到场上，组合能力与资源，在多轮中争取最高分。",
+      "description": "收集并召唤神话生物，组合能力与资源争取高分。",
       "symbol": "♟",
       "accent": "gold",
       "coverUrl": "/images/games/vale-of-eternity.jpg",
@@ -545,7 +595,9 @@
       "sourceUrl": "https://www.moxboardinghouse.com/products/the-vale-of-eternity",
       "photoSourceUrl": "https://www.moxboardinghouse.com/cdn/shop/files/4e712ce3TheValeOfEternity.jpg?v=1755730455&width=3840",
       "dataSourceUrl": "https://www.moxboardinghouse.com/products/the-vale-of-eternity",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/vale-of-eternity.mobile.webp",
+      "coverDesktopUrl": "/images/games/vale-of-eternity.desktop.webp"
     },
     {
       "id": "bomb-busters",
@@ -555,7 +607,7 @@
       "minutes": 30,
       "durationLabel": "约30分钟",
       "complexity": "适中",
-      "description": "合作推理剪线任务中的数字配对，完成逐步升级的拆弹关卡而不引爆炸弹。",
+      "description": "根据线索推理数字，合作配对剪线，安全拆除炸弹。",
       "symbol": "♟",
       "accent": "mint",
       "coverUrl": "/images/games/bomb-busters.jpg",
@@ -566,7 +618,9 @@
       "sourceUrl": "https://madeincamelot.co.uk/products/bomb-busters",
       "photoSourceUrl": "https://madeincamelot.co.uk/cdn/shop/files/BombBusters-box_grande.jpg?v=1756741192",
       "dataSourceUrl": "https://madeincamelot.co.uk/products/bomb-busters",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/bomb-busters.mobile.webp",
+      "coverDesktopUrl": "/images/games/bomb-busters.desktop.webp"
     },
     {
       "id": "scout",
@@ -576,7 +630,7 @@
       "minutes": 20,
       "durationLabel": "约20分钟",
       "complexity": "适中",
-      "description": "手牌不能重排，玩家要以更强组合压过桌面牌组，或从对手处“侦察”一张牌来补强。",
+      "description": "手牌不能重排，用组合压牌，或拿走对手卡牌补强。",
       "symbol": "♟",
       "accent": "plum",
       "coverUrl": "/images/games/scout.jpg",
@@ -587,7 +641,9 @@
       "sourceUrl": "https://frogames.it/products/scout",
       "photoSourceUrl": "https://frogames.it/cdn/shop/files/SCOUT.webp?v=1754889130",
       "dataSourceUrl": "https://boardgamegeek.com/boardgame/291453/scout",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/scout.mobile.webp",
+      "coverDesktopUrl": "/images/games/scout.desktop.webp"
     },
     {
       "id": "spots",
@@ -597,7 +653,7 @@
       "minutes": 25,
       "durationLabel": "约25–30分钟",
       "complexity": "轻松",
-      "description": "玩家掷骰并把点数放到狗牌对应空位；完成六只狗可获胜，骰子风险过高则会爆掉。",
+      "description": "掷骰填满狗牌斑点，完成六只狗，提防贪心爆骰。",
       "symbol": "♟",
       "accent": "coral",
       "coverUrl": "/images/games/spots.jpg",
@@ -608,7 +664,9 @@
       "sourceUrl": "https://store.asmodee.com/products/spots",
       "photoSourceUrl": "https://store.asmodee.com/cdn/shop/files/SPOTS-BASE-image0_2000_535x.jpg?v=1691442731",
       "dataSourceUrl": "https://boardgamegeek.com/boardgame/372559/spots",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/spots.mobile.webp",
+      "coverDesktopUrl": "/images/games/spots.desktop.webp"
     },
     {
       "id": "modern-art",
@@ -618,7 +676,7 @@
       "minutes": 45,
       "durationLabel": "约45分钟",
       "complexity": "适中",
-      "description": "玩家扮演画廊经营者，通过多种拍卖方式买卖作品，并预测艺术家在每轮的市场价值。",
+      "description": "拍卖买卖画作，预测艺术家行情，赚取最多收益。",
       "symbol": "♟",
       "accent": "gold",
       "coverUrl": "/images/games/modern-art.png",
@@ -629,7 +687,9 @@
       "sourceUrl": "https://bgwalker.com/product/Modern-Art-%28%E8%8B%B1%E6%96%87%E7%89%88%29-mDNdg33EFmTsC6iV",
       "photoSourceUrl": "https://media.shopages3.com/media/f855/263442714496_vzg0PsR66Qd7wDWBTRvNe2e5JibqxPkvGnhz5Nwb.png",
       "dataSourceUrl": "https://bgwalker.com/product/Modern-Art-%28%E8%8B%B1%E6%96%87%E7%89%88%29-mDNdg33EFmTsC6iV",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/modern-art.mobile.webp",
+      "coverDesktopUrl": "/images/games/modern-art.desktop.webp"
     },
     {
       "id": "feed-the-kraken",
@@ -639,7 +699,7 @@
       "minutes": 45,
       "durationLabel": "约45–90分钟",
       "complexity": "适中",
-      "description": "玩家分属三个目标不同的秘密阵营，在船上操纵航向、推理身份并争夺控制权；豪华版含升级配件。",
+      "description": "隐藏阵营争夺航向，推理身份，把船引向己方目标。",
       "symbol": "♟",
       "accent": "mint",
       "coverUrl": "/images/games/feed-the-kraken.jpg",
@@ -650,7 +710,9 @@
       "sourceUrl": "https://goodmovebg.com/products/feed-the-kraken-deluxe-edition",
       "photoSourceUrl": "https://goodmovebg.com/cdn/shop/products/FeedtheKrakenDeluxeEdition.jpg?v=1651662620",
       "dataSourceUrl": "https://boardgamegeek.com/boardgameversion/679241/simplified-chinese-deluxe-edition",
-      "recommendationOrder": 6
+      "recommendationOrder": 6,
+      "coverMobileUrl": "/images/games/feed-the-kraken.mobile.webp",
+      "coverDesktopUrl": "/images/games/feed-the-kraken.desktop.webp"
     },
     {
       "id": "harmonies",
@@ -660,7 +722,7 @@
       "minutes": 30,
       "durationLabel": "约30–45分钟",
       "complexity": "适中",
-      "description": "玩家轮流选择地形圆片，搭建山林水域与动物栖息地，以图案组合得分。",
+      "description": "堆叠地形、组合景观，为动物搭建栖息地得分。",
       "symbol": "♟",
       "accent": "plum",
       "coverUrl": "/images/games/harmonies.png",
@@ -671,7 +733,9 @@
       "sourceUrl": "https://www.asmodee.ca/en/product/harmonies/",
       "photoSourceUrl": "https://cdn.svc.asmodee.net/production-asmodeeca/uploads/2024/05/HARMONIES_BOX_COM_R-1024x1024.png",
       "dataSourceUrl": "https://www.asmodee.ca/en/product/harmonies/",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/harmonies.mobile.webp",
+      "coverDesktopUrl": "/images/games/harmonies.desktop.webp"
     },
     {
       "id": "dixit",
@@ -681,7 +745,7 @@
       "minutes": 30,
       "durationLabel": "约30分钟",
       "complexity": "轻松",
-      "description": "说书人用一句话提示一张插画牌，其他人提交相似牌并投票猜测原牌。",
+      "description": "用一句线索描述插画，混入相似图片，投票找原牌。",
       "symbol": "♟",
       "accent": "coral",
       "coverUrl": "/images/games/dixit.jpg",
@@ -692,7 +756,9 @@
       "sourceUrl": "https://www.lobbes.nl/speelgoed/spellen/gezelschapsspellen/bordspellen/detail/2010079-dixit-bordspel",
       "photoSourceUrl": "https://images.lobbes.nl/images/items/2010079a.jpg",
       "dataSourceUrl": "https://www.lobbes.nl/speelgoed/spellen/gezelschapsspellen/bordspellen/detail/2010079-dixit-bordspel",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/dixit.mobile.webp",
+      "coverDesktopUrl": "/images/games/dixit.desktop.webp"
     },
     {
       "id": "incan-gold",
@@ -702,7 +768,7 @@
       "minutes": 20,
       "durationLabel": "约20–30分钟",
       "complexity": "轻松",
-      "description": "玩家逐步深入遗迹翻牌寻宝，每一步都要决定继续冒险还是带着宝物撤离。",
+      "description": "翻牌深入遗迹寻宝，决定继续冒险还是带宝撤离。",
       "symbol": "♟",
       "accent": "gold",
       "coverUrl": "/images/games/incan-gold.jpg",
@@ -713,7 +779,9 @@
       "sourceUrl": "https://www.gamesmen.com.au/incan-gold-board-game",
       "photoSourceUrl": "https://static.gamesmen.com.au/media/catalog/product/cache/43c1b9e48526c06c9c8010675100b71d/i/n/incan_gold_the_race_for_ancient_artifacts_board_game.jpg",
       "dataSourceUrl": "https://www.gamesmen.com.au/incan-gold-board-game",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/incan-gold.mobile.webp",
+      "coverDesktopUrl": "/images/games/incan-gold.desktop.webp"
     },
     {
       "id": "decrypto",
@@ -723,7 +791,7 @@
       "minutes": 30,
       "durationLabel": "约30分钟",
       "complexity": "适中",
-      "description": "两队用线索传递编号代码，同时设法让队友理解、又不让对手截获密码。",
+      "description": "用线索向队友传递密码，同时破解对手的编号。",
       "symbol": "♟",
       "accent": "mint",
       "coverUrl": "/images/games/decrypto.png",
@@ -734,7 +802,9 @@
       "sourceUrl": "https://labyrinthe-jeux.com/lettres-et-mots/2474-decrypto.html",
       "photoSourceUrl": "https://labyrinthe-jeux.com/671-large_default/decrypto.jpg",
       "dataSourceUrl": "https://labyrinthe-jeux.com/lettres-et-mots/2474-decrypto.html",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/decrypto.mobile.webp",
+      "coverDesktopUrl": "/images/games/decrypto.desktop.webp"
     },
     {
       "id": "abracada-what",
@@ -744,7 +814,7 @@
       "minutes": 30,
       "durationLabel": "约30分钟",
       "complexity": "适中",
-      "description": "玩家看得见他人的咒语牌，却看不到自己的牌；根据公开信息推断并施放咒语。",
+      "description": "看别人的牌推断自己的咒语，施法攻击或恢复生命。",
       "symbol": "♟",
       "accent": "plum",
       "coverUrl": "/images/games/abracada-what.jpg",
@@ -755,7 +825,9 @@
       "sourceUrl": "https://www.tw.coupang.com/products/480521133981702",
       "photoSourceUrl": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/269785772357713-ffe04793-ca54-452c-b252-3f90774721cf.jpg",
       "dataSourceUrl": "https://www.tw.coupang.com/products/480521133981702",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/abracada-what.mobile.webp",
+      "coverDesktopUrl": "/images/games/abracada-what.desktop.webp"
     },
     {
       "id": "splendor-pokemon",
@@ -765,7 +837,7 @@
       "minutes": 30,
       "durationLabel": "约30分钟",
       "complexity": "适中",
-      "description": "收集精灵球、捕捉并进化宝可梦来发展引擎，先达成胜利条件的训练家获胜。",
+      "description": "收集精灵球，捕捉并进化宝可梦，率先达成胜利目标。",
       "symbol": "♟",
       "accent": "coral",
       "coverUrl": "/images/games/splendor-pokemon.jpg",
@@ -776,7 +848,9 @@
       "sourceUrl": "https://shopee.tw/%E7%8F%BE%E8%B2%A8-%E5%AF%B6%E5%8F%AF%E5%A4%A2-%E7%92%80%E7%92%A8%E5%AF%B6%E7%9F%B3-%E5%AF%B6%E5%8F%AF%E5%A4%A2-%E7%B0%A1%E4%B8%AD%E7%89%88-%E6%AD%A3%E7%89%88%E6%A1%8C%E9%81%8A-Splendor-Pokemon-i.3890206.25819307797",
       "photoSourceUrl": "https://down-tw.img.susercontent.com/file/tw-11134207-7r98y-lwfgphuamqsm5e",
       "dataSourceUrl": "https://boardgamegeek.com/boardgame/406291/seupeulrendeo-pokemon-splendor-pokemon",
-      "recommendationOrder": 1
+      "recommendationOrder": 1,
+      "coverMobileUrl": "/images/games/splendor-pokemon.mobile.webp",
+      "coverDesktopUrl": "/images/games/splendor-pokemon.desktop.webp"
     },
     {
       "id": "endeavor-deep-sea",
@@ -786,7 +860,7 @@
       "minutes": 60,
       "durationLabel": "约60–120分钟",
       "complexity": "烧脑",
-      "description": "玩家管理海洋研究机构，派遣专家探索深海、发表研究并开展海洋保护项目。",
+      "description": "派遣专家探索深海，发表研究，开展海洋保护项目。",
       "symbol": "♟",
       "accent": "gold",
       "coverUrl": "/images/games/endeavor-deep-sea.jpg",
@@ -797,7 +871,9 @@
       "sourceUrl": "https://madeincamelot.co.uk/products/endeavor-deep-sea",
       "photoSourceUrl": "https://madeincamelot.co.uk/cdn/shop/files/Endeavor-box.jpg?v=1765098250",
       "dataSourceUrl": "https://madeincamelot.co.uk/products/endeavor-deep-sea",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/endeavor-deep-sea.mobile.webp",
+      "coverDesktopUrl": "/images/games/endeavor-deep-sea.desktop.webp"
     },
     {
       "id": "spirit-island",
@@ -807,7 +883,7 @@
       "minutes": 90,
       "durationLabel": "约90–120分钟",
       "complexity": "烧脑",
-      "description": "玩家扮演拥有不同能力的岛屿精灵，合作抵御殖民者扩张并保护原住民。",
+      "description": "扮演能力各异的精灵，合作驱逐入侵者，守护岛屿。",
       "symbol": "♟",
       "accent": "mint",
       "coverUrl": "/images/games/spirit-island.jpg",
@@ -818,7 +894,9 @@
       "sourceUrl": "https://www.gameology.com.au/products/spirit-island",
       "photoSourceUrl": "https://www.gameology.com.au/cdn/shop/products/1_1740c173-fbc0-4c8a-9fd4-61172735d778.jpg?v=1768448379",
       "dataSourceUrl": "https://www.gameology.com.au/products/spirit-island",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/spirit-island.mobile.webp",
+      "coverDesktopUrl": "/images/games/spirit-island.desktop.webp"
     },
     {
       "id": "night-of-the-ninja",
@@ -828,7 +906,7 @@
       "minutes": 15,
       "durationLabel": "约15–30分钟",
       "complexity": "轻松",
-      "description": "玩家秘密加入敌对忍者家族，通过角色技能收集情报并消灭对方首领。",
+      "description": "隐藏家族身份，运用忍者技能获取情报、击败敌方。",
       "symbol": "♟",
       "accent": "plum",
       "coverUrl": "/images/games/night-of-the-ninja.jpg",
@@ -839,7 +917,9 @@
       "sourceUrl": "https://www.brotherwisegames.com/all/p/night-of-the-ninja",
       "photoSourceUrl": "https://images.squarespace-cdn.com/content/v1/6508a57d4f618044bb0f8544/1696952236126-CKFFN14BEUXOR25JJ9IQ/Night-of-the-Ninja-facing-right.png?format=1500w",
       "dataSourceUrl": "https://www.brotherwisegames.com/all/p/night-of-the-ninja",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/night-of-the-ninja.mobile.webp",
+      "coverDesktopUrl": "/images/games/night-of-the-ninja.desktop.webp"
     },
     {
       "id": "ark-nova",
@@ -849,7 +929,7 @@
       "minutes": 90,
       "durationLabel": "约90–150分钟",
       "complexity": "烧脑",
-      "description": "玩家规划并经营现代动物园，以动物、设施与保护项目建立兼具吸引力和生态价值的园区。",
+      "description": "规划动物园、安置动物，兼顾园区吸引力与保护项目。",
       "symbol": "♟",
       "accent": "coral",
       "coverUrl": "/images/games/ark-nova.jpg",
@@ -860,7 +940,9 @@
       "sourceUrl": "https://www.goedkopegezelschapsspellen.nl/nl/product/white-goblin-games-ark-nova---bordspel/",
       "photoSourceUrl": "https://www.goedkopegezelschapsspellen.nl/files/images/8799.jpg",
       "dataSourceUrl": "https://www.goedkopegezelschapsspellen.nl/nl/product/white-goblin-games-ark-nova---bordspel/",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/ark-nova.mobile.webp",
+      "coverDesktopUrl": "/images/games/ark-nova.desktop.webp"
     },
     {
       "id": "the-message-reborn",
@@ -870,7 +952,7 @@
       "minutes": 30,
       "durationLabel": "约30分钟",
       "complexity": "轻松",
-      "description": "玩家秘密承担不同阵营与身份，通过出牌传递、截获情报并判断他人立场，完成本方任务。",
+      "description": "隐藏阵营传递或截获情报，识别立场，完成己方任务。",
       "symbol": "♟",
       "accent": "gold",
       "coverUrl": "/images/games/the-message-reborn.png",
@@ -881,7 +963,9 @@
       "sourceUrl": "https://www.gokids.com.tw/product/detail731",
       "photoSourceUrl": "https://img.gokids.com.tw/GoodPic/38/big/17400404613938.png",
       "dataSourceUrl": "https://boardgamegeek.com/boardgame/67919/the-message",
-      "recommendationOrder": 0
+      "recommendationOrder": 0,
+      "coverMobileUrl": "/images/games/the-message-reborn.mobile.webp",
+      "coverDesktopUrl": "/images/games/the-message-reborn.desktop.webp"
     },
     {
       "id": "avalon",
@@ -890,7 +974,7 @@
       "players": "5–10",
       "minutes": 30,
       "durationLabel": "约30分钟",
-      "description": "玩家分属亚瑟与莫德雷德两大秘密阵营，提议并表决任务队伍。善方争取完成任务，恶方暗中破坏；梅林能识别恶方，却必须避免被刺客发现。",
+      "description": "隐藏身份组队执行任务，找出叛徒，保护梅林。",
       "sourceUrl": "https://www.asmodee.co.uk/products/ibcava1-the-resistance-avalon",
       "photoSourceUrl": "https://cdn.shopify.com/s/files/1/0572/1076/5512/files/IBCAVA1_1.jpg?v=1775066798",
       "ext": ".jpg",
@@ -902,7 +986,9 @@
       "featured": true,
       "createdAt": "2026-10-21T00:00:00.000Z",
       "isNew": false,
-      "recommendationOrder": 2
+      "recommendationOrder": 2,
+      "coverMobileUrl": "/images/games/avalon.mobile.webp",
+      "coverDesktopUrl": "/images/games/avalon.desktop.webp"
     },
     {
       "id": "one-night-ultimate-werewolf",
@@ -911,7 +997,7 @@
       "players": "3–10",
       "minutes": 10,
       "durationLabel": "约10分钟",
-      "description": "每人获得秘密角色，在唯一的夜晚使用查验或交换身份等能力。天亮后通过讨论找出狼人并投票，无主持人，也没有中途淘汰。",
+      "description": "夜晚查验或交换身份，天亮讨论投票，找出狼人。",
       "sourceUrl": "https://beziergames.com/products/one-night-ultimate-werewolf",
       "photoSourceUrl": "https://cdn.shopify.com/s/files/1/0740/4855/products/ONUW_272896be-e795-4aec-9e37-ccd43ca0872d.png?v=1653932533",
       "ext": ".png",
@@ -923,7 +1009,9 @@
       "featured": true,
       "createdAt": "2026-10-21T00:00:00.000Z",
       "isNew": false,
-      "recommendationOrder": 3
+      "recommendationOrder": 3,
+      "coverMobileUrl": "/images/games/one-night-ultimate-werewolf.mobile.webp",
+      "coverDesktopUrl": "/images/games/one-night-ultimate-werewolf.desktop.webp"
     }
   ]
 }
