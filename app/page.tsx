@@ -9,7 +9,9 @@ type Identity = { userId:string; nickname:string };
 type Metric = Pick<Game,"id"|"wantCount"|"myWant"|"voteCount"|"myVote"|"voterColors"|"ratingCount"|"averageRating"|"myRating"|"myComment">;
 type CatalogEntry = Omit<Game,keyof Omit<Metric,"id">>;
 type CatalogData = { games:Metric[]; currentRound:Round|null; participantCount:number; playerColor?:string|null; roundHistory:Round[] };
-type Modal = "nickname"|"admin"|"round"|"rating"|null;
+type PublicComment = {score:number;comment:string;updatedAt:string;color:string|null};
+type CommentPage = {comments:PublicComment[];nextPage:number|null};
+type Modal = "nickname"|"admin"|"round"|"rating"|"comments"|null;
 type Page = "home"|"library";
 type Scope = "推荐"|"全部"|"人气"|"上新";
 declare global { interface Window { __MEEPLE_CONFIG__?: { apiBase:string; assetBase:string } } }
@@ -54,11 +56,11 @@ function Stars({value,onChange,label,disabled=false}:{value:number;onChange?:(n:
 }
 function Cover({game,small=false}:{game:Game;small?:boolean}) { const [failed,setFailed]=useState(false); useEffect(()=>setFailed(false),[game.coverUrl]); return <div className={"cover-art art-"+game.id+(small?" small-cover":"")+(game.coverUrl&&!failed?" has-cover":"")}>
   <span className="cover-symbol" aria-hidden="true">{game.symbol}</span>{game.coverUrl&&!failed&&<picture>{game.coverMobileUrl&&<source media="(max-width: 760px)" srcSet={asset(game.coverMobileUrl)}/>}<img src={asset((small?game.coverMobileUrl:game.coverDesktopUrl)||game.coverUrl)} alt={game.title+"封面"} loading="lazy" decoding="async" onError={()=>setFailed(true)}/></picture>}{!small&&<span className="cover-category">{game.category.split(" · ")[0]}</span>}{game.isNew&&!small&&<span className="new-tag">NEW</span>}</div>; }
-function BoardCard({game,onWant,onVote,onRate,hasRound,busy}:{game:Game;onWant:(g:Game)=>void;onVote:(g:Game)=>void;onRate:(g:Game,n:number)=>void;hasRound:boolean;busy:boolean}) { return <article className={"game-card accent-"+game.accent+(game.myVote?" is-voted":"")}>
+function BoardCard({game,onWant,onVote,onRate,onComments,hasRound,busy}:{game:Game;onWant:(g:Game)=>void;onVote:(g:Game)=>void;onRate:(g:Game,n:number)=>void;onComments:(g:Game)=>void;hasRound:boolean;busy:boolean}) { return <article className={"game-card accent-"+game.accent+(game.myVote?" is-voted":"")}>
   <Cover game={game}/><div className="card-content"><div className="card-title-row"><div><p className="eyebrow">{game.category}</p><h3>{game.title}</h3>{game.ratingCount>0&&<div className="rating-row title-rating"><Stars value={game.averageRating} label={"平均评分 "+game.averageRating.toFixed(1)}/><span className="rating-copy">{game.averageRating.toFixed(1)+" · "+game.ratingCount+" 人"}</span></div>}</div><span className="vote-count" title="想玩人数"><Heart filled={game.myWant}/>{game.wantCount}</span></div>
   <p className="game-description">{game.description||"挑一款好游戏，和朋友一起开局。"}</p><div className="game-facts"><span>♙ {game.players} 人</span><span>◷ {game.durationLabel || `${game.minutes} 分钟`}</span><span className={"weight weight-"+game.complexity}>{game.complexity}</span></div>
   
-  <div className="rate-picker"><span>{game.myRating?"我的评分":"玩过这款？"}</span><button type="button" className="open-rating" disabled={busy} onClick={()=>onRate(game,game.myRating)}>{game.myRating?<><span className="personal-score">★ {game.myRating.toFixed(1)}</span></>:"去评分 ☆"}</button></div>
+  <div className="rate-picker"><button type="button" className="view-comments" onClick={()=>onComments(game)} aria-label={"查看"+game.title+"的评论"}>查看评论</button><button type="button" className="open-rating" disabled={busy} onClick={()=>onRate(game,game.myRating)}>{game.myRating?<><span className="personal-score">★ {game.myRating.toFixed(1)}</span></>:"去评分 ☆"}</button></div>
   <div className="card-actions"><button type="button" className={"want-button "+(game.myWant?"wanted":"")} aria-pressed={game.myWant} aria-label={(game.myWant?"取消想玩":"想玩")+game.title} onClick={()=>onWant(game)} disabled={busy}><Heart filled={game.myWant}/><span>{game.myWant?"已想玩":"想玩"}</span></button><button type="button" className={"vote-button "+(game.myVote?"voted":"")} aria-pressed={game.myVote} aria-label={(game.myVote?"取消本轮投票":"本轮投票给")+game.title} title={hasRound?"每款一票，可同时投多款":"等待管理员开启本轮投票"} disabled={busy||!hasRound} onClick={()=>onVote(game)}><Meeple/><span>{game.myVote?"已投票":"投票"}</span></button></div></div></article>; }
 export default function Home() {
   const [page,setPage]=useState<Page>("home");
@@ -74,8 +76,12 @@ export default function Home() {
   const [roundTitle,setRoundTitle]=useState("");
   const [busyIds,setBusyIds]=useState<Set<string>>(new Set()),[formBusy,setFormBusy]=useState(false),[formError,setFormError]=useState(""),[notice,setNotice]=useState(""),[loading,setLoading]=useState(true),[loadError,setLoadError]=useState("");
   const pendingGames=useRef(new Set<string>()),ratingSubmit=useRef(false),hasLoaded=useRef(false);
+  useEffect(()=>{if(!notice)return;const timer=setTimeout(()=>setNotice(""),10000);return()=>clearTimeout(timer);},[notice]);
   const [ratingGameId,setRatingGameId]=useState(""),[ratingDraft,setRatingDraft]=useState(0),[commentDraft,setCommentDraft]=useState(""),[ratingSaving,setRatingSaving]=useState(false),[ratingSaved,setRatingSaved]=useState(false);
   const ratingGame=games.find(g=>g.id===ratingGameId);
+  const [commentGameId,setCommentGameId]=useState(""),[comments,setComments]=useState<PublicComment[]>([]),[commentsLoading,setCommentsLoading]=useState(false),[commentsError,setCommentsError]=useState(""),[commentPage,setCommentPage]=useState<number|null>(0);
+  const commentsGame=games.find(g=>g.id===commentGameId),commentsSequence=useRef(0),commentsPending=useRef(false);
+  useEffect(()=>{if(modal!=="comments"){commentsSequence.current++;commentsPending.current=false;}},[modal]);
   const searchRef=useRef<HTMLInputElement>(null),sequence=useRef(0),dialogRef=useRef<HTMLElement>(null);
   const reloadCatalog=useCallback(async()=>{setLoading(true);try{const response=await fetch(asset("/catalog/games.json"));if(!response.ok)throw new Error("桌游目录加载失败，请重试。");const data=await response.json() as {games:CatalogEntry[]};if(!Array.isArray(data.games))throw new Error("桌游目录格式有误。");setEntries(data.games);setCatalogError("");}catch(e){setCatalogError(e instanceof Error?e.message:"桌游目录加载失败。");}finally{setLoading(false);}},[]);
   useEffect(()=>{void reloadCatalog();},[reloadCatalog]);
@@ -105,13 +111,21 @@ export default function Home() {
     setIdentity(saved);setNameDraft(nickname);setFormError("");setModal(null);
   }
   async function toggle(game:Game,kind:"want"|"vote"){if(!identity)return;if(!interactionReady){setNotice("互动服务暂时不可用，请重试后再操作。");return;}if(!identity.nickname){openModal("nickname");return;}if(kind==="vote"&&!round){setNotice("请等待管理员开启新一轮投票。");return;}if(pendingGames.current.has(game.id))return;pendingGames.current.add(game.id);setBusyIds(new Set(pendingGames.current));try{await request("/api/games/"+game.id+"/"+kind,{method:"PUT",body:JSON.stringify({userId:identity.userId,active:kind==="want"?!game.myWant:!game.myVote,...(kind==="vote"?{roundId:round?.id}:{})})});if(!(await load(identity.userId))){setNotice("操作已保存，但最新汇总暂时无法刷新，请重试。");return;}setNotice(kind==="want"?(game.myWant?"已取消想玩":"已加入想玩清单"):(game.myVote?"已取消本轮投票":"已投给「"+game.title+"」"));}catch(e){setNotice(e instanceof Error?e.message:"保存失败，请重试。");}finally{pendingGames.current.delete(game.id);setBusyIds(new Set(pendingGames.current));}}
+  async function loadComments(gameId:string,page:number,reset=false){
+    if(commentsPending.current&&!reset)return;
+    const seq=++commentsSequence.current;commentsPending.current=true;setCommentsLoading(true);setCommentsError("");
+    try{const data=await request<CommentPage>("/api/games/"+encodeURIComponent(gameId)+"/rating?page="+page);if(seq!==commentsSequence.current)return;setComments(previous=>reset?data.comments:[...previous,...data.comments]);setCommentPage(data.nextPage);}
+    catch(error){if(seq===commentsSequence.current)setCommentsError(error instanceof Error?error.message:"评论加载失败，请重试。");}
+    finally{if(seq===commentsSequence.current){commentsPending.current=false;setCommentsLoading(false);}}
+  }
+  function showComments(game:Game){setCommentGameId(game.id);setComments([]);setCommentPage(0);openModal("comments");void loadComments(game.id,0,true);}
   function chooseRating(game:Game){if(!identity?.nickname){openModal("nickname");return;}setRatingGameId(game.id);setRatingDraft(game.myRating);setCommentDraft(game.myComment||"");setRatingSaved(false);openModal("rating");}
   async function saveRating(e:FormEvent){
     e.preventDefault();if(!identity||!ratingGame||ratingDraft<.5||ratingSubmit.current)return;
     ratingSubmit.current=true;sequence.current++;setRatingSaving(true);setFormError("");
     try{
       const result=await request<{ok:boolean;rating:Pick<Game,"id"|"ratingCount"|"averageRating"|"myRating"|"myComment">}>("/api/games/"+ratingGame.id+"/rating",{method:"PUT",body:JSON.stringify({userId:identity.userId,score:ratingDraft,comment:commentDraft})});
-      setMetrics(previous=>{const found=previous.find(m=>m.id===ratingGame.id);return [...previous.filter(m=>m.id!==ratingGame.id),{wantCount:found?.wantCount||0,myWant:found?.myWant||false,voteCount:found?.voteCount||0,myVote:found?.myVote||false,...result.rating}];});
+      setMetrics(previous=>{const found=previous.find(m=>m.id===ratingGame.id);return [...previous.filter(m=>m.id!==ratingGame.id),{wantCount:found?.wantCount||0,myWant:found?.myWant||false,voteCount:found?.voteCount||0,myVote:found?.myVote||false,voterColors:found?.voterColors||[],...result.rating}];});
       setRatingSaved(true);
     }catch(error){setFormError(error instanceof Error?error.message:"评分未保存，请重试。");}
     finally{ratingSubmit.current=false;setRatingSaving(false);}
@@ -136,7 +150,7 @@ export default function Home() {
   {page==="library"&&<div className="type-filter"><span>游戏类型</span><div className="category-tabs" role="tablist" aria-label="游戏类型">{categories.map(c=><button key={c} type="button" role="tab" aria-selected={category===c} className={category===c?"active":""} onClick={()=>setCategory(c)}>{c}</button>)}</div></div>}
   {loadError&&<div className="notice error-notice" role="alert">{interactionReady?"最新汇总暂未刷新，可继续尝试操作。":"互动服务暂时不可用，桌游目录仍可浏览。"}{loadError}<button type="button" onClick={()=>identity&&void load(identity.userId)}>重试</button></div>}
   {catalogError&&<div className="notice error-notice" role="alert">{catalogError}<button type="button" onClick={()=>void reloadCatalog()}>重试目录</button></div>}
-  {loading?<div className="empty-state"><Meeple className="empty-meeple"/><p>正在摆好桌游…</p></div>:!games.length&&catalogError?<div className="empty-state"><Meeple className="empty-meeple"/><h3>暂时连接不上桌游清单</h3><p>请检查网络后点击上方「重试」。</p></div>:visibleGames.length?<div className="game-grid">{visibleGames.map(g=><BoardCard key={g.id} game={g} onWant={g=>void toggle(g,"want")} onVote={g=>void toggle(g,"vote")} onRate={g=>chooseRating(g)} hasRound={!!round} busy={busyIds.has(g.id)||!interactionReady}/>)}</div>:<div className="empty-state"><span className="loading-mark">✧</span><h3>{page==="home"&&scope==="上新"&&!query?"还没有新上架的桌游":"没有找到符合条件的桌游"}</h3><p>{page==="home"&&scope==="上新"?"新添的桌游会出现在这里。":"试试换个关键词或游戏类型。"}</p><button type="button" onClick={()=>{setQuery("");setCategory("全部类型");window.location.hash="/library";}}>看看全部桌游</button></div>}
+  {loading?<div className="empty-state"><Meeple className="empty-meeple"/><p>正在摆好桌游…</p></div>:!games.length&&catalogError?<div className="empty-state"><Meeple className="empty-meeple"/><h3>暂时连接不上桌游清单</h3><p>请检查网络后点击上方「重试」。</p></div>:visibleGames.length?<div className="game-grid">{visibleGames.map(g=><BoardCard key={g.id} game={g} onWant={g=>void toggle(g,"want")} onVote={g=>void toggle(g,"vote")} onRate={g=>chooseRating(g)} onComments={showComments} hasRound={!!round} busy={busyIds.has(g.id)||!interactionReady}/>)}</div>:<div className="empty-state"><span className="loading-mark">✧</span><h3>{page==="home"&&scope==="上新"&&!query?"还没有新上架的桌游":"没有找到符合条件的桌游"}</h3><p>{page==="home"&&scope==="上新"?"新添的桌游会出现在这里。":"试试换个关键词或游戏类型。"}</p><button type="button" onClick={()=>{setQuery("");setCategory("全部类型");window.location.hash="/library";}}>看看全部桌游</button></div>}
   {page==="home"&&<a className="see-all" href="#/library">逛逛全部 {games.length} 款桌游 <span>→</span></a>}
   </section>
   <aside className="rating-reminder"><span>★</span><p><strong>玩过别忘了评分哦</strong><small>给游戏留个 0.5–5 星，让下一次选择更有灵感。</small></p><a href="#/library">去评分 ↗</a></aside>
@@ -154,11 +168,27 @@ export default function Home() {
       <p className="rating-caption">{ratingDraft>=4.5?"太喜欢了，还想再开一局！":ratingDraft>=3.5?"很好玩，值得再玩。":ratingDraft>=2.5?"还不错，看场合再玩。":ratingDraft>0?"这次不太合我的口味。":"支持半星，选好后再确认。"}</p>
       {ratingGame.myRating>0&&<p className="previous-rating">上次评分：{ratingGame.myRating.toFixed(1)} 星</p>}
       <label className="rating-comment-label">一句话评论 <span>选填</span><textarea maxLength={80} rows={2} disabled={ratingSaving} placeholder="比如：节奏轻快，很适合朋友聚会。" value={commentDraft} onChange={e=>setCommentDraft(e.target.value.replace(/[\r\n]+/g," "))}/><small>{commentDraft.length}/80</small></label>
+      <p className="comment-visibility">填写的评论会展示给其他玩家。</p>
       {formError&&<p className="form-error" role="alert">{formError}</p>}
       <button className="primary-button" type="submit" disabled={ratingSaving||ratingDraft<.5}>{ratingSaving?"正在保存…":ratingDraft?"确认评分 · "+ratingDraft.toFixed(1)+" 星":"请先选择分数"}</button>
       <button type="button" className="rating-cancel" disabled={ratingSaving} onClick={()=>setModal(null)}>暂不评分</button>
     </>}
   </form>}
+  {modal==="comments"&&commentsGame&&<>
+    <div className="rating-game-heading"><Cover game={commentsGame} small/><div><p className="overline">桌边聊聊</p><h2 id="dialog-title">{commentsGame.title}</h2></div></div>
+    <p className="comments-intro">大家的游戏体验</p>
+    <div className="comments-list" aria-busy={commentsLoading}>
+      {comments.map((item,index)=><article className="public-comment" key={index+":"+item.updatedAt}>
+        <div className="comment-meta"><span className="comment-player"><span className="comment-avatar"><Meeple color={item.color||"#ef6048"}/></span>玩家</span><time dateTime={item.updatedAt}>{new Date(item.updatedAt.replace(" ","T")+(item.updatedAt.includes("T")?"":"Z")).toLocaleDateString("zh-CN")}</time></div>
+        <div className="comment-score"><Stars value={item.score} label={item.score+" 星"}/><span>{Number(item.score).toFixed(1)}</span></div><p>{item.comment}</p>
+      </article>)}
+      {!commentsLoading&&!commentsError&&!comments.length&&<p className="comments-empty">还没有留言，来分享你的游戏体验吧。</p>}
+    </div>
+    {commentsLoading&&<p className="comments-status" role="status">正在翻看大家的留言…</p>}
+    {commentsError&&<div className="form-error" role="alert">{commentsError}<button type="button" onClick={()=>void loadComments(commentsGame.id,commentPage??0,comments.length===0)}>重试</button></div>}
+    {!commentsLoading&&!commentsError&&commentPage!==null&&comments.length>0&&<button type="button" className="secondary-button comments-more" onClick={()=>void loadComments(commentsGame.id,commentPage)}>再看一些</button>}
+    <button type="button" className="primary-button" onClick={()=>chooseRating(commentsGame)}>写下我的体验 ☆</button>
+  </>}
   {modal==="round"&&<form onSubmit={startRound}><span className="dialog-icon"><Meeple/></span><p className="overline">A FRESH ROUND, A NEW ADVENTURE</p><h2 id="dialog-title">新开一轮投票</h2><p className="dialog-intro">{round?"当前轮次会结束并保留记录，新一轮从零票开始。":"开启后，每位朋友可以投给多款想玩的游戏，每款一票。"}想玩清单和评分会继续保留。</p><label className="field-label">本轮投票名称<input autoFocus required maxLength={40} value={roundTitle} onChange={e=>setRoundTitle(e.target.value)}/></label><p className="round-hint">每人可投多款 · 每款一票 · 可分别取消</p>{formError&&<p className="form-error" role="alert">{formError}</p>}<button type="submit" className="primary-button" disabled={formBusy}>{formBusy?"开启中…":"开启新投票 →"}</button></form>}
   </section></div>}
   </main>;
