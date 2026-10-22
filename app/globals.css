@@ -132,4 +132,4 @@
 .game-card .game-description{display:block;height:auto;min-height:0;max-height:none;overflow:visible;-webkit-line-clamp:unset;overflow-wrap:anywhere}
 
 /* Comfortable mobile reading, without clipping gameplay summaries. */
-@media(max-width:640px){.game-card .game-description{font-size:14px;line-height:1.65;margin:9px 0 12px;display:block;height:auto;max-height:none;overflow:visible;-webkit-line-clamp:unset}}
+@media(max-width:640px){.game-card .game-description{font-size:13px;line-height:1.65;margin:9px 0 12px;display:block;height:auto;max-height:none;overflow:visible;-webkit-line-clamp:unset}}
